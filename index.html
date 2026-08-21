@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>介護老人保健施設 ル・サンク湯澤｜医療法人博滇会</title>
+<title>在宅強化型 介護老人保健施設 ル・サンク湯澤｜医療法人博滇会</title>
 <!-- ★お試し公開のあいだは、検索結果に出ないようにしています。
      本番として公開するときは、この1行を必ず削除してください。★ -->
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="さいたま市西区の介護老人保健施設 ル・サンク湯澤。通所リハビリテーション・訪問リハビリテーションも行っています。見学・入所のご相談はお気軽にどうぞ。">
+<meta name="description" content="さいたま市西区の在宅強化型 介護老人保健施設 ル・サンク湯澤。通所リハビリテーション・訪問リハビリテーションも行っています。見学・入所のご相談はお気軽にどうぞ。">
 
 <!--
 ========================================================================
@@ -43,6 +43,13 @@
      ・行事イベント写真 … 「中を見せる写真」と役割がぶつかるため、お知らせ側へ
      ・スクロール演出   … 上記のとおり
 
+  ■ 見せ場の一行は「私たちは、おうちに帰る、応援団です。」（2026-08-20 変更）
+     折り返してよいのは読点のうしろだけ。3つのかたまりに分けてあります。
+     手書き書体のファイルも、この文字に合わせて作り直しています。
+
+  ■ 老健は「在宅強化型」です。在宅復帰・在宅療養の支援機能がとくに高いと
+     国に認められた介護老人保健施設であることを、カードと折り畳みに明記しています。
+
   ■ サービスの正式名称は「通所リハビリテーション」で確定（2026-08-18）
 
   ■ ★表記の注意★ チラシに「老人保険福祉施設」とありますが、制度上の正しい名称は
@@ -63,6 +70,10 @@
      介護の場合、入力を求めると多くの方が途中でやめるためです。
      何回押されたかは id で数えられます。
 
+  ■ ★このファイルは「フォルダを使わない」構成です★
+     画像・書体・PDFが index.html と同じ場所にある前提で書いてあります。
+     （GitHubにフォルダごと上げられなかったため・2026-08-21）
+
   ■ ★お試し公開中★ 検索結果に出ないよう noindex を入れています。
      本番公開のときは必ず削除してください。
 
@@ -80,7 +91,7 @@
      ⑪（済）通所リハの情報 … チラシから反映（2026-08-20）
      ⑫（済）訪問リハの情報 … 法人サイトから反映（2026-08-20）
         ※事業所名は「訪問リハビリステーション くるみ」（ル・サンク湯澤内）
-     ※ 法人ロゴ（images/logo-mark.png）とプライバシーポリシー、
+     ※ 法人ロゴ（logo-mark.png）とプライバシーポリシー、
        InstagramのURL（@lecinqyuzawa）はすべて確定しました。
      必要な写真は、1枚目のほかに9枚（1日5・職員3・食事1）です。
 ========================================================================
@@ -103,11 +114,11 @@
 }
 
 /* 手書きの書体（Zen Kurenaido）。
-   使う文字だけに絞ってあるので 1.9KB しかありません。読み込みはほぼ一瞬です。
-   ファイルは fonts/tegaki-subset.woff2 に置いてください。 */
+   使う文字だけに絞ってあるので 2KB ほどしかありません。読み込みはほぼ一瞬です。
+   ファイルは index.html と同じ場所に置いてください。 */
 @font-face{
   font-family:"Tegaki";
-  src:url("fonts/tegaki-subset.woff2") format("woff2");
+  src:url("tegaki-subset.woff2") format("woff2");
   font-weight:400; font-display:swap;
 }
 
@@ -142,7 +153,7 @@ img{ max-width:100%; display:block; }
 .lede{ color:var(--ink-soft); margin-bottom:2.2em; }
 
 /* 写真。いま入っているのは「仮の画像」です。
-   本番の写真ができたら images フォルダの中身を同じファイル名で差し替えるか、
+   本番の写真ができたら、同じファイル名で差し替えるか、
    src="..." のファイル名を書き換えてください。 */
 .ph-img{
   width:100%; height:auto; display:block;
@@ -264,9 +275,9 @@ img{ max-width:100%; display:block; }
 /* ★見せ場★ このページで主役はこの一行だけです（手書き・白）*/
 .lead{
   font-family:"Tegaki", system-ui, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
-  font-size: clamp(2rem, 9.2vw, 4.8rem);
+  font-size: clamp(1.7rem, 7.6vw, 4rem);
   font-weight:400;                 /* 手書き書体は太らせないほうがきれいです */
-  line-height:1.5; letter-spacing:.02em;
+  line-height:1.45; letter-spacing:.01em;
   color:#fff;
   /* 万一明るい部分に重なっても読めるよう、ごく薄い影を入れています */
   text-shadow:0 2px 14px rgba(0,0,0,.42), 0 1px 3px rgba(0,0,0,.30);
@@ -331,6 +342,19 @@ img{ max-width:100%; display:block; }
 }
 .section--white .card{ background:var(--bg); }
 .card h3{ font-size:1.08rem; margin-bottom:.5em; }
+/* 「在宅強化型」の小さな札 */
+.badge{
+  display:inline-block; margin-left:.6em; vertical-align:.12em;
+  font-size:.7rem; font-weight:700; letter-spacing:.04em;
+  color:#fff; background:var(--accent);
+  border-radius:999px; padding:3px 10px; white-space:nowrap;
+}
+.card__strong{
+  margin-top:1em; padding:12px 14px;
+  background:var(--accent-pale); border-radius:8px;
+  font-size:.9rem; color:var(--ink); line-height:1.8;
+}
+.card__strong strong{ color:var(--accent); }
 .card p{ font-size:.94rem; color:var(--ink-soft); }
 .card .target{
   display:inline-block; margin-top:1em; font-size:.82rem;
@@ -729,7 +753,7 @@ img{ max-width:100%; display:block; }
   <div class="fv__inner">
 
     <!-- ★見せ場★ -->
-    <h1 class="lead"><span>明日も、</span><span>いつもの一日を。</span></h1>
+    <h1 class="lead"><span>私たちは、</span><span>おうちに帰る、</span><span>応援団です。</span></h1>
 
     <p class="declaration">暮らしをまんなかに考え、そこに少しのプラスを。</p>
 
@@ -769,8 +793,9 @@ img{ max-width:100%; display:block; }
 
     <div class="cards">
       <article class="card">
-        <h3>介護老人保健施設</h3>
+        <h3>介護老人保健施設<span class="badge">在宅強化型</span></h3>
         <p>病院を退院されたあと、ご自宅での暮らしに戻るための時間を過ごしていただく場所です。医師・看護師・リハビリ職・介護職がチームで関わります。</p>
+        <p class="card__strong">ル・サンク湯澤は<strong>在宅強化型</strong>の介護老人保健施設です。おうちに帰るための支援と、帰ったあとの暮らしを支える力が<strong>とくに高い施設として国に認められています</strong>。</p>
         <span class="target">入所してリハビリをしたい方へ</span>
 
         <details class="more">
@@ -786,7 +811,7 @@ img{ max-width:100%; display:block; }
             <ul class="feat">
             <li>
               <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></span>
-              <div><h4>在宅復帰支援</h4><p>「家に帰る」を目標に、リハビリと多職種ケアで在宅復帰をめざす在宅強化型の老健です。</p></div>
+              <div><h4>在宅強化型の在宅復帰支援</h4><p>「家に帰る」を目標に、リハビリと多職種のケアで在宅復帰をめざします。在宅復帰・在宅療養を支える力が高い施設として、国の基準で「在宅強化型」と認められています。</p></div>
             </li>
             <li>
               <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M4 3h4"/><path d="M14 3h4"/><path d="M11 14v2a5 5 0 0 0 9 3"/><circle cx="20" cy="17" r="2.2"/></svg></span>
@@ -902,27 +927,27 @@ img{ max-width:100%; display:block; }
 
     <div class="day-grid">
       <figure class="day-card">
-        <img class="ph-img" src="images/day-1-morning.jpg" alt="朝、起きて身支度をする様子" width="640" height="480" loading="lazy">
+        <img class="ph-img" src="day-1-morning.jpg" alt="朝、起きて身支度をする様子" width="640" height="480" loading="lazy">
         <p class="day-time">7:00</p>
         <p class="day-what">起きて、顔を洗って、朝ごはん。</p>
       </figure>
       <figure class="day-card">
-        <img class="ph-img" src="images/day-2-reha.jpg" alt="リハビリを受けている様子" width="640" height="480" loading="lazy">
+        <img class="ph-img" src="day-2-reha.jpg" alt="リハビリを受けている様子" width="640" height="480" loading="lazy">
         <p class="day-time">9:30</p>
         <p class="day-what">リハビリと、入浴。</p>
       </figure>
       <figure class="day-card">
-        <img class="ph-img" src="images/day-3-lunch.jpg" alt="食堂で昼食をとる様子" width="640" height="480" loading="lazy">
+        <img class="ph-img" src="day-3-lunch.jpg" alt="食堂で昼食をとる様子" width="640" height="480" loading="lazy">
         <p class="day-time">12:00</p>
         <p class="day-what">みんなで、お昼ごはん。</p>
       </figure>
       <figure class="day-card">
-        <img class="ph-img" src="images/day-4-afternoon.jpg" alt="午後、談話スペースで過ごす様子" width="640" height="480" loading="lazy">
+        <img class="ph-img" src="day-4-afternoon.jpg" alt="午後、談話スペースで過ごす様子" width="640" height="480" loading="lazy">
         <p class="day-time">14:00</p>
         <p class="day-what">リハビリのあとは、ゆっくりと。</p>
       </figure>
       <figure class="day-card">
-        <img class="ph-img" src="images/day-5-room.jpg" alt="居室のようす" width="640" height="480" loading="lazy">
+        <img class="ph-img" src="day-5-room.jpg" alt="居室のようす" width="640" height="480" loading="lazy">
         <p class="day-time">21:00</p>
         <p class="day-what">お部屋で、おやすみなさい。</p>
       </figure>
@@ -941,17 +966,17 @@ img{ max-width:100%; display:block; }
 
     <div class="staff">
       <figure>
-        <img class="ph-img ph-round" src="images/staff-1.jpg" alt="理学療法士の職員" width="420" height="420" loading="lazy">
+        <img class="ph-img ph-round" src="staff-1.jpg" alt="理学療法士の職員" width="420" height="420" loading="lazy">
         <span class="role">理学療法士</span>
         <p class="voice">「できることを、ひとつずつ増やしていきましょう」</p>
       </figure>
       <figure>
-        <img class="ph-img ph-round" src="images/staff-2.jpg" alt="介護福祉士の職員" width="420" height="420" loading="lazy">
+        <img class="ph-img ph-round" src="staff-2.jpg" alt="介護福祉士の職員" width="420" height="420" loading="lazy">
         <span class="role">介護福祉士</span>
         <p class="voice">「その方のペースに合わせるのが、いちばん近道です」</p>
       </figure>
       <figure>
-        <img class="ph-img ph-round" src="images/staff-3.jpg" alt="支援相談員の職員" width="420" height="420" loading="lazy">
+        <img class="ph-img ph-round" src="staff-3.jpg" alt="支援相談員の職員" width="420" height="420" loading="lazy">
         <span class="role">支援相談員</span>
         <p class="voice">「まずはご家族のお困りごとから、お聞かせください」</p>
       </figure>
@@ -965,7 +990,7 @@ img{ max-width:100%; display:block; }
   <div class="wrap">
     <h2 class="h2" id="meal-title">食事のこと</h2>
     <div class="meal">
-      <img class="ph-img" src="images/meal.jpg" alt="お食事の一例" width="800" height="600" loading="lazy">
+      <img class="ph-img" src="meal.jpg" alt="お食事の一例" width="800" height="600" loading="lazy">
       <div class="meal-text js-fade">
         <p>栄養士が献立を立て、施設の中で調理しています。かむ力・飲み込む力に合わせて形をととのえたお食事もご用意しています。</p>
         <p class="meal-sub">「腸活ごはんでおなか活き活きプロジェクト」をはじめ、季節の行事食や各地の郷土料理、手作りおやつなど、毎日の食事を楽しんでいただける工夫を続けています。</p>
@@ -1017,7 +1042,7 @@ img{ max-width:100%; display:block; }
       <!-- ▼差し替え⑨：パンフレットのPDF。ファイル名・更新日・容量を書き換えてください -->
       <li>
         <!-- ▼差し替え⑨：パンフレットのPDFが届いたら、下の <span class="dl-item dl-item--soon"> を
-             <a class="dl-item" id="btn-pdf-pamphlet" href="pdf/lecinq-pamphlet.pdf" target="_blank" rel="noopener">
+             <a class="dl-item" id="btn-pdf-pamphlet" href="lecinq-pamphlet.pdf" target="_blank" rel="noopener">
              に戻し、閉じタグも </a> に直してください。 -->
         <span class="dl-item dl-item--soon">
           <span class="dl-icon" aria-hidden="true">
@@ -1095,7 +1120,7 @@ img{ max-width:100%; display:block; }
   <div class="wrap">
     <a class="orgcard" id="btn-org" href="https://hakushinkai.jp/" target="_blank" rel="noopener">
       <span class="orgcard__logo">
-        <img src="images/logo-mark.png" alt="" width="256" height="256" loading="lazy">
+        <img src="logo-mark.png" alt="" width="256" height="256" loading="lazy">
       </span>
       <span class="orgcard__text">
         <strong>医療法人 博滇会</strong>
@@ -1116,8 +1141,8 @@ img{ max-width:100%; display:block; }
     <!-- ▼差し替え③（ヘッダーと同じアドレス） -->
     <a id="btn-recruit-footer"
        href="https://hakushinkai.jp/recuitment?utm_source=lecinq&amp;utm_medium=site&amp;utm_campaign=recruit">求人情報</a>
-    <a id="btn-pdf-juyojiko-roken" href="pdf/juyojiko-roken.pdf" target="_blank" rel="noopener">重要事項説明書 介護老人保健施設（PDF）</a>
-    <a id="btn-pdf-juyojiko-tsusho" href="pdf/juyojiko-tsusho.pdf" target="_blank" rel="noopener">重要事項説明書 通所リハビリテーション（PDF）</a>
+    <a id="btn-pdf-juyojiko-roken" href="juyojiko-roken.pdf" target="_blank" rel="noopener">重要事項説明書 介護老人保健施設（PDF）</a>
+    <a id="btn-pdf-juyojiko-tsusho" href="juyojiko-tsusho.pdf" target="_blank" rel="noopener">重要事項説明書 通所リハビリテーション（PDF）</a>
     <a href="https://hakushinkai.jp/privacy-policy/" target="_blank" rel="noopener">プライバシーポリシー</a>
   </nav>
 

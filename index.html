@@ -336,6 +336,48 @@ img{ max-width:100%; display:block; }
 .btn:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:3px; }
 
 /* =========================================================
+   おうちに帰るまでの流れ（4段）
+   動きは付けていません。見せ場は1枚目の一行だけ、というきまりのためです。
+   ========================================================= */
+.flow{ list-style:none; margin:0 0 2.8em; padding:0; }
+.flow__item{
+  position:relative;
+  border-left:2px solid var(--line);
+  padding:0 0 30px 26px;
+}
+.flow__item:last-child{ border-left-color:transparent; padding-bottom:0; }
+.flow__item::before{
+  content:""; position:absolute; left:-9px; top:5px;
+  width:16px; height:16px; border-radius:50%;
+  background:var(--accent); border:3px solid var(--bg);
+}
+.flow__label{
+  display:inline-block; margin-bottom:.5em;
+  background:var(--accent-pale); color:var(--accent-dark);
+  font-size:.78rem; font-weight:700; letter-spacing:.06em;
+  padding:3px 12px; border-radius:999px;
+}
+.flow__item h3{ font-size:1.08rem; line-height:1.6; margin:0 0 .45em; }
+.flow__item p{ margin:0 0 .6em; color:var(--ink-soft); }
+.flow__item p:last-child{ margin-bottom:0; }
+.check{
+  display:inline-block; margin-right:.5em;
+  background:#fbf2e4; color:#8a5a1c;
+  font-size:.72rem; font-weight:700; letter-spacing:.04em;
+  padding:2px 8px; border-radius:4px; vertical-align:.1em;
+}
+.flow-note{
+  background:#fbf2e4; border-left:4px solid #8a5a1c; border-radius:0 8px 8px 0;
+  padding:12px 16px; font-size:.88rem; color:#6d4715; margin:0 0 2.6em;
+}
+.sub-h{
+  font-size:1.15rem; line-height:1.6; margin:0 0 .3em;
+  padding-top:1.6em; border-top:1px solid var(--line);
+}
+.sub-lede{ color:var(--ink-soft); margin-bottom:1.6em; }
+.section--white .flow__item::before{ border-color:#fff; }
+
+/* =========================================================
    できること（サービス3つ）
    ========================================================= */
 .cards{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
@@ -364,6 +406,37 @@ img{ max-width:100%; display:block; }
   display:inline-block; margin-top:1em; font-size:.82rem;
   color:var(--accent); border-top:1px solid var(--line); padding-top:.7em;
 }
+
+/* 文章の中から別サイトへ飛ぶリンク（訪問リハビリ） */
+.inline-link{
+  color:var(--accent); text-decoration:underline;
+  text-underline-offset:.22em; text-decoration-thickness:1.5px;
+  transition: color .18s ease;
+}
+.inline-link:hover{ color:var(--accent-dark); }
+.inline-link:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:3px; }
+.inline-link__tail{ white-space:nowrap; }   /* 矢印だけが次の行に取り残されないように */
+.inline-link__mark{
+  display:inline-block; width:.78em; height:.78em;
+  margin-left:.25em; vertical-align:-.02em;
+}
+.inline-link__mark svg{ width:100%; height:100%; }
+
+/* 別サイトへ飛ぶカード内リンク（訪問リハビリ） */
+.card-link{
+  display:flex; align-items:center; gap:12px;
+  margin-top:18px; padding:14px 16px; min-height:52px;
+  background:var(--accent); color:#fff; border-radius:8px;
+  text-decoration:none; line-height:1.6;
+  transition: background-color .18s ease;
+}
+.card-link:hover{ background:var(--accent-dark); }
+.card-link:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:3px; }
+.card-link__text{ display:flex; flex-direction:column; gap:.2em; min-width:0; }
+.card-link__text strong{ font-size:.95rem; font-weight:700; }
+.card-link__text small{ font-size:.8rem; color:rgba(255,255,255,.85); }
+.card-link__arrow{ flex:none; margin-left:auto; width:22px; height:22px; }
+.card-link__arrow svg{ width:100%; height:100%; }
 
 /* =========================================================
    入所された方の、1日（写真つき）
@@ -455,6 +528,27 @@ img{ max-width:100%; display:block; }
 .cta .btn--visit:hover{ background:#fff; color:var(--accent); }
 .cta .note{ font-size:.86rem; color:rgba(255,255,255,.85); }
 
+/* サービスごとの電話番号（3つ）。
+   1枚目と画面下のバーは代表番号1つのまま。ここだけ3つに分けています。 */
+.tel3{
+  display:grid; gap:12px; grid-template-columns:repeat(3, 1fr);
+  max-width:900px; margin:0 auto 16px;
+}
+.tel3 .btn--tel{
+  flex:none; flex-direction:column; gap:2px;
+  padding:14px 14px; text-align:center; min-height:74px;
+}
+.tel3 .btn--tel .label{
+  white-space:normal; font-size:.82rem; font-weight:600; line-height:1.4;
+}
+.tel3 .btn--tel .num{ font-size:1.3rem; }
+.tel3-lead{ color:rgba(255,255,255,.85); font-size:.9rem; margin-bottom:1em; }
+.cta .actions--visit{ margin-bottom:1.2em; }
+.cta .actions--visit .btn--visit{ flex:0 1 300px; }
+@media (max-width:760px){
+  .tel3{ grid-template-columns:1fr; }
+}
+
 /* =========================================================
    折り畳み（介護老人保健施設のくわしい情報）
    ========================================================= */
@@ -545,6 +639,11 @@ img{ max-width:100%; display:block; }
 .access > div:first-child{ border-top:1px solid rgba(255,255,255,.14); }
 .access dt{ color:#9aa6a0; font-size:.85rem; }
 .access dd{ color:#e6ebe8; line-height:1.7; }
+/* フッターの電話も、サービスごとに3つ */
+.access .tel-row{ display:block; margin-bottom:.6em; }
+.access .tel-row:last-child{ margin-bottom:0; }
+.access .tel-svc{ display:block; color:#9aa6a0; font-size:.78rem; line-height:1.5; }
+.access .tel-row a{ font-size:1.02rem; letter-spacing:.03em; white-space:nowrap; }
 
 .footer__map{ display:flex; flex-direction:column; gap:12px; }
 .footer__map iframe{
@@ -792,14 +891,50 @@ img{ max-width:100%; display:block; }
 <!-- ===== できること（サービス3つ）===== -->
 <section class="section" aria-labelledby="services-title">
   <div class="wrap">
-    <h2 class="h2" id="services-title"><span>3つのかたちで、</span><span>お手伝いします。</span></h2>
-    <p class="lede">泊まる・通う・訪ねる。暮らしの状況に合わせて選んでいただけます。</p>
+    <h2 class="h2" id="services-title"><span>おうちに帰るまで、</span><span>帰ってからも。</span></h2>
+    <p class="lede">入所して終わりでも、退所して終わりでもありません。帰るまでの準備と、帰ったあとの暮らしまでを、同じ施設でお手伝いします。</p>
+
+    <ol class="flow">
+      <li class="flow__item">
+        <span class="flow__label">ご相談</span>
+        <h3>はじめから、帰る日のことを話します。</h3>
+        <p>ル・サンク湯澤は<strong>在宅強化型</strong>の介護老人保健施設です。おうちに帰る方を送り出す力が、とくに高い施設として国に認められています。ですから入所のご相談のときから、「いつごろ、どんな状態で帰るか」を一緒に考えます。</p>
+      </li>
+
+      <li class="flow__item">
+        <span class="flow__label">入所中</span>
+        <h3>体を戻す時間と、暮らしの練習。</h3>
+        <p>リハビリの時間だけではありません。起きる、歩く、トイレに行く、お風呂に入る。おうちに戻ってから必要になる毎日の動きを、そのまま練習していきます。</p>
+        <p>医師・看護師・リハビリ職・介護職・管理栄養士・支援相談員が、同じ計画を見ながら関わります。</p>
+        <p><span class="check">要確認</span>入所期間の目安は、およそ◯か月です。リハビリは週◯回・1回◯分。</p>
+      </li>
+
+      <li class="flow__item">
+        <span class="flow__label">帰る前</span>
+        <h3>おうちのほうを、先に整えます。</h3>
+        <p><span class="check">要確認</span>ご自宅にうかがい、手すりの位置や段差、トイレまでの動線を一緒に確かめます。ご家族には介助のしかたをお伝えし、担当のケアマネジャーと退所後の予定を決めてからお帰りいただきます。</p>
+      </li>
+
+      <li class="flow__item">
+        <span class="flow__label">帰ったあと</span>
+        <h3>帰ってからも、同じ場所が関わります。</h3>
+        <p>ご自宅から通っていただく<strong>通所リハビリテーション</strong>（送迎があります）と、リハビリ職がご自宅にうかがう<!-- ▼差し替え⑪と同じ住所です。専用サイトができたら両方書き換えてください -->
+          <a class="inline-link" id="btn-homon-site-2"
+             href="https://hakushinkai.jp/facilities/home_visit_rihabili/"
+             target="_blank" rel="noopener"><strong>訪問リハビリステーション</strong><span class="inline-link__tail"><strong> くるみ</strong><span class="inline-link__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg></span></span></a>。おうちに帰って終わりではなく、そこからも続けてお手伝いします。</p>
+        <p>通所リハビリでは、ご自宅にうかがって<strong>家屋調査</strong>を行い、福祉用具の選び方や住まいの環境についても助言します。</p>
+      </li>
+    </ol>
+
+    <p class="flow-note">▲「要確認」の付いた文章は、まだ施設への確認が取れていません。<strong>テスト版のため仮に置いてあります。</strong>確認が取れしだい書き換えるか、取れなければ削除します。</p>
+
+    <h3 class="sub-h">3つのかたちで、お手伝いします。</h3>
+    <p class="sub-lede">泊まる・通う・訪ねる。暮らしの状況に合わせて選んでいただけます。</p>
 
     <div class="cards">
       <article class="card">
         <h3>介護老人保健施設<span class="badge">在宅強化型</span></h3>
         <p>病院を退院されたあと、ご自宅での暮らしに戻るための時間を過ごしていただく場所です。医師・看護師・リハビリ職・介護職がチームで関わります。</p>
-        <p class="card__strong">ル・サンク湯澤は<strong>在宅強化型</strong>の介護老人保健施設です。おうちに帰るための支援と、帰ったあとの暮らしを支える力が<strong>とくに高い施設として国に認められています</strong>。</p>
         <span class="target">入所してリハビリをしたい方へ</span>
 
         <details class="more">
@@ -892,31 +1027,23 @@ img{ max-width:100%; display:block; }
         <p>リハビリ職がご自宅にうかがい、住み慣れた部屋でリハビリを行います。手すりの位置など、暮らしに合わせた助言もします。</p>
         <span class="target">外出がむずかしい方へ</span>
 
-        <details class="more">
-          <summary class="more__head">
-            <span>くわしく見る</span>
-            <span class="more__mark" aria-hidden="true"></span>
-          </summary>
-          <div class="more__body">
-            <dl class="spec">
-            <div><dt>事業所名</dt><dd>訪問リハビリステーション くるみ<span class="spec-sub">ル・サンク湯澤内</span></dd></div>
-            <div><dt>対応地域</dt><dd>さいたま市（西区・北区・桜区・中央区・浦和区）、上尾市<span class="spec-sub">その他の地域はご相談ください</span></dd></div>
-            <div><dt>対応職種</dt><dd>理学療法士・作業療法士</dd></div>
-            <div><dt>お問い合わせ</dt><dd><a href="tel:0486228172">048-622-8172</a><span class="spec-sub">FAX 048-622-8173</span></dd></div>
-            </dl>
-            <ul class="feat">
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6"/><path d="M20 9v6"/><path d="M7 6v12"/><path d="M17 6v12"/><path d="M7 12h10"/></svg></span>
-              <div><h4>からだのリハビリ</h4><p>関節の運動、ストレッチ、筋力のトレーニング、歩く練習などを行います。</p></div>
-            </li>
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></span>
-              <div><h4>暮らしに合わせた助言</h4><p>お家の改修のご提案、日常の動作の練習、福祉用具の選定、介助のしかたの助言もいたします。</p></div>
-            </li>
-            </ul>
-            <p class="more__note">お申し込みには、主治医の指示書が必要です。担当のケアマネジャーを通じて、お電話でお申し込みください。</p>
-          </div>
-        </details>
+        <!-- ▼差し替え⑪：訪問リハビリは別サイトです。専用サイトができたら href を書き換えてください。
+             いまは法人サイトの訪問リハビリのページを指しています。
+             id="btn-homon-site" は押された回数を数えるために使っています（消さないでください） -->
+        <a class="card-link" id="btn-homon-site"
+           href="https://hakushinkai.jp/facilities/home_visit_rihabili/"
+           target="_blank" rel="noopener">
+          <span class="card-link__text">
+            <strong>訪問リハビリステーション くるみ</strong>
+            <small>くわしい情報は、こちらのサイトでご覧いただけます</small>
+          </span>
+          <span class="card-link__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
+            </svg>
+          </span>
+        </a>
       </article>
     </div>
   </div>
@@ -1074,10 +1201,20 @@ img{ max-width:100%; display:block; }
   <div class="wrap">
     <h2 class="h2" id="cta-title"><span>まずは、</span><span>ご相談ください。</span></h2>
     <p class="lede">ご本人の状態がわからない段階でも大丈夫です。ご家族だけのご見学もできます。</p>
-    <div class="actions">
+    <p class="tel3-lead">お電話でのご相談は、ご利用になりたいサービスの番号へどうぞ。</p>
+    <!-- 電話番号はサービスごとに3つ。id は押された回数を数えるために使っています（消さないでください） -->
+    <div class="tel3">
       <a class="btn btn--tel" id="btn-tel-2" href="tel:0486228170">
-        <span class="label">お電話でのご相談</span><span class="num">048-622-8170</span>
+        <span class="label">介護老人保健施設／ショートステイ</span><span class="num">048-622-8170</span>
       </a>
+      <a class="btn btn--tel" id="btn-tel-2-tsusho" href="tel:0487883100">
+        <span class="label">通所リハビリテーション</span><span class="num">048-788-3100</span>
+      </a>
+      <a class="btn btn--tel" id="btn-tel-2-homon" href="tel:0486228172">
+        <span class="label">訪問リハビリステーション くるみ</span><span class="num">048-622-8172</span>
+      </a>
+    </div>
+    <div class="actions actions--visit">
       <!-- ▼差し替え②（同じアドレス） -->
       <a class="btn btn--visit" id="btn-visit-2" href="https://hakushinkai.jp/contact/">
         見学・入所のご相談
@@ -1097,8 +1234,12 @@ img{ max-width:100%; display:block; }
 
       <dl class="access">
         <div><dt>所在地</dt><dd>〒331-0052<br>さいたま市西区三橋6丁目567番地</dd></div>
-        <div><dt>電話</dt><dd><a href="tel:0486228170">048-622-8170</a></dd></div>
-        <div><dt>FAX</dt><dd>048-622-8171</dd></div>
+        <div><dt>電話</dt><dd>
+          <span class="tel-row"><span class="tel-svc">介護老人保健施設／ショートステイ</span><a href="tel:0486228170">048-622-8170</a></span>
+          <span class="tel-row"><span class="tel-svc">通所リハビリテーション</span><a href="tel:0487883100">048-788-3100</a></span>
+          <span class="tel-row"><span class="tel-svc">訪問リハビリステーション くるみ</span><a href="tel:0486228172">048-622-8172</a></span>
+        </dd></div>
+        <div><dt>FAX</dt><dd>048-622-8171<span class="tel-svc">訪問リハビリステーション くるみ　048-622-8173</span></dd></div>
         <div><dt>メール</dt><dd><a href="mailto:lecinq@hakushinkai.or.jp">lecinq@hakushinkai.or.jp</a></dd></div>
         <div><dt>バス</dt><dd>大宮駅西口より東武バス「大69」をご利用ください</dd></div>
         <div><dt>徒歩</dt><dd>西大宮駅より徒歩 約20分</dd></div>

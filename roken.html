@@ -996,15 +996,87 @@ img{ max-width:100%; display:block; }
   .orgcard, .footer__links a, .map-link{ transition:none; }
   .js-fade{ opacity:1; transition:none; }   /* 食事の説明は最初から表示 */
 }
+
+/* =========================================================
+   下層ページだけで使う見た目
+   ========================================================= */
+.pagehead{
+  background:var(--accent); color:#fff; padding:38px 24px 34px;
+}
+.pagehead .wrap{ position:relative; }
+.crumb{ font-size:.84rem; color:rgba(255,255,255,.8); margin-bottom:1em; }
+.crumb a{ color:#fff; text-decoration:underline; text-underline-offset:.2em; }
+.crumb a:hover{ color:var(--accent-pale); }
+.pagehead h1{
+  font-size: clamp(1.5rem, 5vw, 2.2rem); line-height:1.45; margin:0 0 .4em;
+}
+.pagehead .badge{ background:#fff; color:var(--accent-dark); }
+.pagehead p{ color:rgba(255,255,255,.9); margin:0; max-width:44em; }
+
+/* 上の帯の施設名を、トップへ戻るリンクにしたときの見た目 */
+.header a.facility{ color:inherit; text-decoration:none; transition: color .18s ease; }
+.header a.facility:hover{ color:var(--accent); }
+
+/* 1日の流れ（写真つき） */
+.day-grid{ display:grid; gap:14px; grid-template-columns:repeat(auto-fit, minmax(170px,1fr)); }
+.day-card{ margin:0; }
+.day-card img{
+  width:100%; height:auto; aspect-ratio:4/3; object-fit:cover;
+  border-radius:10px; display:block; background:var(--line);
+}
+.day-time{
+  margin:.7em 0 .1em; font-size:.95rem; font-weight:700; color:var(--accent);
+  letter-spacing:.04em;
+}
+.day-what{ margin:0; font-size:.94rem; color:var(--ink-soft); line-height:1.7; }
+.day-note{ margin-top:1.6em; font-size:.92rem; color:var(--ink-soft); }
+
+/* 料金の表 */
+.fee{ width:100%; border-collapse:collapse; margin:0 0 1.2em; font-size:.95rem; background:var(--white); }
+.fee caption{ text-align:left; font-weight:700; margin-bottom:.6em; color:var(--ink); }
+.fee th, .fee td{ border:1px solid var(--line); padding:11px 14px; text-align:left; }
+.fee thead th{ background:var(--accent-pale); color:var(--accent-dark); font-size:.88rem; }
+.fee td.num{ text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.fee tbody th{ font-weight:600; background:#fbfaf7; }
+.tablewrap{ overflow-x:auto; margin-bottom:1.4em; }
+.fee-total{
+  background:var(--accent-pale); border-radius:10px; padding:18px 20px; margin-bottom:1.4em;
+}
+.fee-total p{ margin:0 0 .5em; }
+.fee-total p:last-child{ margin-bottom:0; }
+.fee-total strong{ color:var(--accent-dark); font-size:1.05rem; }
+
+/* 入所までの流れ（番号つき） */
+.steps{ list-style:none; margin:0 0 1.4em; padding:0; display:grid; gap:12px; }
+.steps li{
+  display:grid; grid-template-columns:2.2em 1fr; gap:14px; align-items:start;
+  background:var(--white); border:1px solid var(--line); border-radius:10px; padding:16px 18px;
+}
+.steps .no{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:2.2em; height:2.2em; border-radius:50%;
+  background:var(--accent); color:#fff; font-size:.85rem; font-weight:700;
+}
+.steps h3{ margin:0 0 .25em; font-size:1rem; }
+.steps p{ margin:0; font-size:.93rem; color:var(--ink-soft); }
+
+/* 施設のあらまし */
+.facts{ display:grid; gap:0; margin-bottom:1.6em; }
+.facts > div{
+  display:grid; grid-template-columns:8em 1fr; gap:1em;
+  padding:12px 0; border-bottom:1px solid var(--line);
+}
+.facts > div:first-child{ border-top:1px solid var(--line); }
+.facts dt{ color:var(--ink-soft); font-size:.9rem; }
+.facts dd{ margin:0; }
+@media (max-width:480px){
+  .facts > div{ grid-template-columns:1fr; gap:.2em; }
+}
 </style>
-</head>
-
-<body>
-
 <!-- ===== 上の帯 ===== -->
 <header class="header">
   <div class="header__id">
-    <span class="facility">ル・サンク湯澤</span>
+    <a class="facility" href="index.html">ル・サンク湯澤</a>
     <span class="group">医療法人博滇会グループ</span>
   </div>
   <div class="header__links">
@@ -1019,64 +1091,184 @@ img{ max-width:100%; display:block; }
   </div>
 </header>
 
-<!-- ===== 1枚目 ===== -->
-<main class="fv">
-  <div class="fv__inner">
-
-    <!-- ★見せ場★ -->
-    <h1 class="lead"><span>私たちは、</span><span>おうちに帰る、</span><span>応援団です。</span></h1>
-
-    <!-- 宣言の一行「暮らしをまんなかに考え、そこに少しのプラスを。」は削除しました（2026-08-21） -->
-
-    <!-- サービスの正式名称は確定済み（2026-08-18） -->
-    <ul class="services">
-      <li>介護老人保健施設</li>
-      <li>通所リハビリテーション</li>
-      <li>訪問リハビリステーション くるみ</li>
-    </ul>
-
-    <div class="actions">
-      <a class="btn btn--tel" id="btn-tel" href="tel:0486228170">
-        <span class="label">お電話でのご相談</span><span class="num">048-622-8170</span>
-      </a>
-      <!-- ▼差し替え②：問い合わせページのアドレス -->
-      <a class="btn btn--visit" id="btn-visit" href="https://hakushinkai.jp/contact/">
-        見学・入所のご相談
-      </a>
-    </div>
-
-    <p class="place">さいたま市西区三橋6丁目567番地</p>
-  </div>
-</main>
-
-<!-- 空き状況のかたまりは、更新ができないため削除しました（2026-08-18 決定）。
-     もし更新できる体制ができたら、ここに戻すのが元の設計です。 -->
-
-<!-- 「中を、見ていただけます。」のかたまりは削除しました（2026-08-19 決定）。
-     理由：下の「入所された方の、1日」と役割がぶつかるため。
-     場所は、人が過ごしている場面の写真の中で見せます。 -->
-
-<!-- ===== できること（サービス3つ）===== -->
-<section class="section section--flow" aria-labelledby="services-title">
-  <!-- 背景のロゴ。読み上げには出しません（飾りのため） -->
-  <div class="bg-logo" aria-hidden="true"><img src="logo-mark.png" alt="" width="600" height="600" loading="lazy"></div>
+<!-- ===== ページの見出し ===== -->
+<div class="pagehead">
   <div class="wrap">
-    <h2 class="h2" id="services-title"><span>おうちに帰るまで、</span><span>帰ってからも。</span></h2>
-    <p class="lede lede--flow">ル・サンク湯澤は<strong>在宅強化型</strong>の介護老人保健施設です。入所・リハビリ・在宅支援・再入所まで、多職種とグループの連携で、<strong><span class="nb">「おうちに帰る」までも、</span><span class="nb">「帰ってから」も、</span></strong>私たちが応援します。</p>
+    <p class="crumb"><a href="index.html">ル・サンク湯澤</a> ／ 介護老人保健施設</p>
+    <h1>介護老人保健施設<span class="badge">在宅強化型</span></h1>
+    <p>おうちに帰るための時間を過ごしていただく場所です。入所のご相談・ご見学は、いつでも承ります。</p>
+  </div>
+</div>
 
+<section class="section" aria-labelledby="about-title">
+  <div class="wrap">
+    <h2 class="h2" id="about-title">「家に帰る」を、応援する。</h2>
+    <p class="lede">ル・サンク湯澤は<strong>在宅強化型</strong>の介護老人保健施設です。おうちに帰る方を送り出す力が、とくに高い施設として国に認められています。</p>
     <ul class="tags">
       <li>医療対応</li>
       <li>24時間 看護師常駐</li>
+      <li>入所定員 100名</li>
     </ul>
 
-    <!-- 一貫サポート体制の図。施設パンフレット（内面）の図をもとにしています。
-         矢印は飾りなので読み上げからは外してあります。動きは付けていません。 -->
+    <dl class="facts">
+      <div><dt>入所定員</dt><dd><strong>100名</strong>（従来型多床室 80床 ／ 従来型個室 20床）</dd></div>
+      <div><dt>おもな職種</dt><dd>医師・看護職員・介護職員・支援相談員・理学療法士・作業療法士・言語聴覚士・管理栄養士</dd></div>
+      <div><dt>サービスの内容</dt><dd>入浴・排泄・食事などの介護と日常生活のお世話／機能訓練とその他必要な医療／療養上のお世話／健康チェック／退所時の指導</dd></div>
+      <div><dt>医療の体制</dt><dd>医師が常勤し、日々の健康管理に対応します。歯科往診にも対応できる体制を整えています。専門的な対応が必要なときは、協力医療機関へ診療を依頼します</dd></div>
+      <div><dt>お問い合わせ</dt><dd><a href="tel:0486228170">048-622-8170</a></dd></div>
+    </dl>
+
+    <p class="lede" style="margin-bottom:0">上の内容は<strong>重要事項説明書</strong>に基づいています。くわしくはページ下部のPDFをご覧ください。</p>
+  </div>
+</section>
+
+<section class="section section--white" aria-labelledby="reha-title">
+  <div class="wrap">
+    <h2 class="h2" id="reha-title">リハビリの充実</h2>
+    <p class="lede">理学療法士（PT）・作業療法士（OT）・言語聴覚士（ST）が連携し、お一人ずつの個別プログラムで機能回復をお手伝いします。</p>
+    <ul class="tags">
+      <li>PT 理学療法士</li>
+      <li>OT 作業療法士</li>
+      <li>ST 言語聴覚士</li>
+      <li>歩行トレーニングロボット</li>
+    </ul>
+
+    <p>リハビリの時間だけではありません。起きる、歩く、トイレに行く、お風呂に入る。<strong>おうちに戻ってから必要になる毎日の動き</strong>を、そのまま練習していきます。</p>
+    <p><strong>「歩行トレーニングロボット」を導入</strong>しています。安心して歩く体験を重ねていただけます。</p>
+    <p><span class="check">要確認</span>リハビリの頻度（週◯回・1回◯分）と、入所期間の目安（およそ◯か月）を書き足してください。</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="day-title">
+  <div class="wrap">
+    <h2 class="h2" id="day-title">入所された方の、1日</h2>
+    <p class="lede">おおよその流れです。実際は体調やご希望に合わせて調整します。</p>
+    <div class="day-grid">
+      <figure class="day-card">
+        <img src="day-1-morning.jpg" alt="朝、起きて身支度をする様子" width="640" height="480" loading="lazy">
+        <p class="day-time">7:00</p>
+        <p class="day-what">起きて、顔を洗って、朝ごはん。</p>
+      </figure>
+      <figure class="day-card">
+        <img src="day-2-reha.jpg" alt="リハビリを受けている様子" width="640" height="480" loading="lazy">
+        <p class="day-time">9:30</p>
+        <p class="day-what">リハビリと、入浴。</p>
+      </figure>
+      <figure class="day-card">
+        <img src="day-3-lunch.jpg" alt="食堂で昼食をとる様子" width="640" height="480" loading="lazy">
+        <p class="day-time">12:00</p>
+        <p class="day-what">みんなで、お昼ごはん。</p>
+      </figure>
+      <figure class="day-card">
+        <img src="day-4-afternoon.jpg" alt="午後、談話スペースで過ごす様子" width="640" height="480" loading="lazy">
+        <p class="day-time">14:00</p>
+        <p class="day-what">リハビリのあとは、ゆっくりと。</p>
+      </figure>
+      <figure class="day-card">
+        <img src="day-5-room.jpg" alt="居室のようす" width="640" height="480" loading="lazy">
+        <p class="day-time">21:00</p>
+        <p class="day-what">お部屋で、おやすみなさい。</p>
+      </figure>
+    </div>
+
+    <p class="day-note">お部屋は、多床室（80床）と個室（20床）をご用意しています。夜間も看護師がおりますので、ご安心ください。</p>
+  </div>
+</section>
+
+<section class="section section--white" aria-labelledby="short-title">
+  <div class="wrap">
+    <h2 class="h2" id="short-title">ショートステイ（短期入所）</h2>
+    <p class="lede">医療管理のもとで、リハビリ・介護・生活支援を短い期間だけ受けていただけます。安全な環境で過ごしながら、必要な支援を受けられるのが特徴です。</p>
+    <ul class="steps">
+      <li><span class="no">1</span><div><h3>ご家族の休息（レスパイト）に</h3><p>通院・お仕事・気分転換に。ご家族が休むことは、介護を続ける力になります。</p></div></li>
+      <li><span class="no">2</span><div><h3>入所前のお試しに</h3><p>先に生活のリズムを体験できるので、そのあとの入所がスムーズに進みます。</p></div></li>
+      <li><span class="no">3</span><div><h3>特別養護老人ホームの待機中に</h3><p>入所を待つあいだの負担を軽くします。体調管理や生活の維持にもつながります。</p></div></li>
+    </ul>
+
+    <p>ショートステイでも、老健の専門職がリハビリを行います。短い期間でも「身体機能の維持・改善」を目指せるのが強みです。</p>
+    <p class="day-note">ショートステイは平日のみの受け入れです。送迎や体調不良時の対応については、事前にご確認ください。</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="fee-title">
+  <div class="wrap">
+    <h2 class="h2" id="fee-title">ご利用料金</h2>
+    <p class="lede">お支払いいただくのは、<strong>①介護保険の自己負担分</strong>と<strong>②下記の実費</strong>です。</p>
+    <div class="fee-total">
+      <p><strong>① 介護保険の自己負担分</strong></p>
+      <p>介護報酬の告示額に、介護保険負担割合証に記載された割合（1〜3割）をかけた額です。<strong>要介護度と加算によって変わります</strong>ので、金額はお見積りをお出しします。お気軽にお問い合わせください。</p>
+    </div>
+
+    <div class="tablewrap">
+    <table class="fee">
+      <caption>② 実費（1日あたり）</caption>
+      <thead><tr><th>項目</th><th>区分</th><th>金額</th></tr></thead>
+      <tbody>
+        <tr><th rowspan="2">居住費</th><td>従来型個室（20床）</td><td class="num">2,800円</td></tr>
+        <tr><td>従来型多床室（80床）</td><td class="num">700円</td></tr>
+        <tr><th rowspan="3">食費</th><td>朝食</td><td class="num">550円</td></tr>
+        <tr><td>昼食</td><td class="num">850円</td></tr>
+        <tr><td>夕食</td><td class="num">800円</td></tr>
+        <tr><th>テレビ設置</th><td>ご希望の方</td><td class="num">100円</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="tablewrap">
+    <table class="fee">
+      <caption>② 実費（その都度）</caption>
+      <thead><tr><th>項目</th><th>金額</th></tr></thead>
+      <tbody>
+        <tr><th>洗濯代行代</th><td class="num">600円（1回あたり）</td></tr>
+        <tr><th>理美容代</th><td class="num">実費</td></tr>
+        <tr><th>診断書・文書料</th><td class="num">5,000円 〜 10,000円</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="tablewrap">
+    <table class="fee">
+      <caption>実費だけを合計すると（1日あたり・食事3食とも召し上がった場合）</caption>
+      <thead><tr><th>お部屋</th><th>居住費</th><th>食費</th><th>1日の合計</th><th>30日で</th></tr></thead>
+      <tbody>
+        <tr><th>多床室</th><td class="num">700円</td><td class="num">2,200円</td><td class="num">2,900円</td><td class="num">87,000円</td></tr>
+        <tr><th>個室</th><td class="num">2,800円</td><td class="num">2,200円</td><td class="num">5,000円</td><td class="num">150,000円</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="fee-total">
+      <p><strong>介護保険負担限度額認定をお持ちの方へ</strong></p>
+      <p>居住費と食費は、<strong>認定証に記載された金額</strong>が1日あたりの料金になります。上の表の金額ではありません。認定証をお持ちの場合は、ご相談のときにお知らせください。</p>
+    </div>
+
+    <p class="day-note"><span class="check">要確認</span>金額は<strong>重要事項説明書（2024年11月1日版）</strong>から転記しています。改定があった場合は、こちらの表も必ず直してください。最新の内容は、ページ下部の重要事項説明書PDFでご確認いただけます。</p>
+  </div>
+</section>
+
+<section class="section section--white" aria-labelledby="step-title">
+  <div class="wrap">
+    <h2 class="h2" id="step-title">ご入所までの流れ</h2>
+    <p class="lede">ケアマネジャーの方、ご家族の方、どちらからのご相談でも承ります。</p>
+    <ul class="steps">
+      <li><span class="no">1</span><div><h3>お電話でご相談</h3><p><a href="tel:0486228170">048-622-8170</a> へお電話ください。支援相談員が承ります。ご本人の状態がわからない段階でも大丈夫です。</p></div></li>
+      <li><span class="no">2</span><div><h3>ご見学</h3><p>お部屋、リハビリ室、食堂などをご案内します。ご家族だけのご見学もできます。</p></div></li>
+      <li><span class="no">3</span><div><h3>お申し込み・書類のご提出</h3><p><span class="check">要確認</span>必要な書類（診療情報提供書など）と、提出のしかたを書き足してください。</p></div></li>
+      <li><span class="no">4</span><div><h3>入所判定</h3><p><span class="check">要確認</span>判定の会議の頻度と、結果をお伝えするまでの日数を書き足してください。</p></div></li>
+      <li><span class="no">5</span><div><h3>ご入所</h3><p>入所の日から、おうちに帰る日のことを一緒に考えていきます。</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="after-title">
+  <div class="wrap">
+    <h2 class="h2" id="after-title">退所したあとも、続きます。</h2>
+    <p class="lede">おうちに帰って終わりではありません。同じ施設と、同じグループが、そのまま関わり続けます。</p>
     <div class="stages">
       <div class="stage">
         <span class="stage__no">①</span>
         <p class="stage__name">入所・ショートステイ</p>
         <p class="stage__sub">リハビリと、暮らしの練習。</p>
-        <p class="stage__plus">帰るまでの、生きるプラス</p>
       </div>
       <span class="stage__arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -1099,7 +1291,6 @@ img{ max-width:100%; display:block; }
         <span class="stage__no">③</span>
         <p class="stage__name">在宅療養</p>
         <p class="stage__sub">通所リハビリ・訪問リハビリ・訪問診療。</p>
-        <p class="stage__plus">帰ってからの、生きるプラス</p>
       </div>
     </div>
 
@@ -1109,358 +1300,31 @@ img{ max-width:100%; display:block; }
       </svg>
     </span><span>おうちに帰ったあと、また調子をくずされたときは、<strong>必要に応じて入所に戻ることもできます。</strong>行ったきりでも、帰ったきりでもありません。</span></p>
 
-    <ol class="flow">
-      <li class="flow__item">
-        <span class="flow__label">ご相談</span>
-        <div class="flow__grid">
-          <div class="flow__text">
-            <h3>はじめから、帰る日のことを話します。</h3>
-            <p>ル・サンク湯澤は<strong>在宅強化型</strong>の介護老人保健施設です。おうちに帰る方を送り出す力が、とくに高い施設として国に認められています。ですから入所のご相談のときから、「いつごろ、どんな状態で帰るか」を一緒に考えます。</p>
-          </div>
-          <figure class="flow__photo">
-            <!-- ▼差し替え⑫：本番の写真に差し替えてください（いまは仮の画像です） -->
-            <img src="flow-1-soudan.jpg" alt="ご相談のようす" width="640" height="480" loading="lazy">
-          </figure>
-        </div>
-      </li>
-
-      <li class="flow__item">
-        <span class="flow__label">① 入所・ショートステイ</span>
-        <div class="flow__grid">
-          <div class="flow__text">
-            <h3>体を戻す時間と、暮らしの練習。</h3>
-            <p>リハビリの時間だけではありません。起きる、歩く、トイレに行く、お風呂に入る。おうちに戻ってから必要になる毎日の動きを、そのまま練習していきます。</p>
-            <p><strong>理学療法士・作業療法士・言語聴覚士の3職種</strong>が連携し、お一人ずつの計画をつくります。歩く練習には<strong>歩行トレーニングロボット</strong>も使い、安心して歩く体験を重ねていただけます。</p>
-            <p>医師・看護師・リハビリ職・介護職・管理栄養士・支援相談員が、同じ計画を見ながら関わります。<strong>職員全員が、「おうちに帰る」の応援団です。</strong></p>
-            <p><span class="check">要確認</span>入所期間の目安は、およそ◯か月です。リハビリは週◯回・1回◯分。</p>
-          </div>
-          <figure class="flow__photo">
-            <!-- ▼差し替え⑫：本番の写真に差し替えてください（いまは仮の画像です） -->
-            <img src="flow-2-nyusho.jpg" alt="リハビリと生活の練習のようす" width="640" height="480" loading="lazy">
-          </figure>
-        </div>
-      </li>
-
-      <li class="flow__item">
-        <span class="flow__label">② 退所調整</span>
-        <div class="flow__grid">
-          <div class="flow__text">
-            <h3>おうちのほうを、先に整えます。</h3>
-            <p>帰る日が近づいたら、多職種で<strong>退所調整</strong>を行います。ご本人の状態、ご家族の事情、おうちの様子をひとつずつ確かめ、担当のケアマネジャーと退所後の予定を決めてからお帰りいただきます。</p>
-            <p><span class="check">要確認</span>ご自宅にうかがい、手すりの位置や段差、トイレまでの動線を一緒に確かめます。ご家族には介助のしかたをお伝えします。</p>
-          </div>
-          <figure class="flow__photo">
-            <!-- ▼差し替え⑫：本番の写真に差し替えてください（いまは仮の画像です） -->
-            <img src="flow-3-kaeru.jpg" alt="ご自宅を確認するようす" width="640" height="480" loading="lazy">
-          </figure>
-        </div>
-      </li>
-
-      <li class="flow__item">
-        <span class="flow__label">③ 在宅療養</span>
-        <div class="flow__grid">
-          <div class="flow__text">
-            <h3>帰ってからも、同じ場所が関わります。</h3>
-            <p>ご自宅から通っていただく<strong>通所リハビリテーション</strong>（送迎があります）と、リハビリ職がご自宅にうかがう<!-- ▼差し替え⑪と同じ住所です。専用サイトができたら両方書き換えてください -->
-            <a class="inline-link" id="btn-homon-site-2"
-               href="https://hakushinkai.jp/facilities/home_visit_rihabili/"
-               target="_blank" rel="noopener"><strong>訪問リハビリステーション</strong><span class="inline-link__tail"><strong> くるみ</strong><span class="inline-link__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg></span></span></a>。おうちに帰って終わりではなく、そこからも続けてお手伝いします。</p>
-            <p>通所リハビリは、運動のためのリハビリだけではありません。<strong>施設で調理するお食事、入浴のお手伝い、みんなで過ごす時間</strong>まで。暮らしを支えるものが、ここにそろっています。ご自宅にうかがって<strong>家屋調査</strong>を行い、福祉用具や住まいの環境についても助言します。</p>
-          </div>
-          <figure class="flow__photo">
-            <!-- ▼差し替え⑫：本番の写真に差し替えてください（いまは仮の画像です） -->
-            <img src="flow-4-kaettaato.jpg" alt="通所リハビリ・訪問リハビリのようす" width="640" height="480" loading="lazy">
-          </figure>
-        </div>
-      </li>
-    </ol>
-
     <p class="group-note"><strong>グループの事業所が、そのまま続きます。</strong>訪問看護・訪問リハビリ、通所介護・通所リハビリ、居宅介護支援（ケアマネジャー）、有料老人ホーム。退所後の生活設計から在宅サービスの選定、施設入所のご相談まで、<strong>コーディネート専門部署</strong>の職員が一括してお手伝いします。</p>
 
-    <p class="flow-note">▲「要確認」の付いた文章は、まだ施設への確認が取れていません。<strong>テスト版のため仮に置いてあります。</strong>確認が取れしだい書き換えるか、取れなければ削除します。</p>
-    <h3 class="sub-h">3つのかたちで、お手伝いします。</h3>
-    <p class="sub-lede">泊まる・通う・訪ねる。暮らしの状況に合わせて選んでいただけます。</p>
-
-    <div class="cards">
-      <article class="card">
-        <h3>介護老人保健施設<span class="badge">在宅強化型</span></h3>
-        <p>病院を退院されたあと、ご自宅での暮らしに戻るための時間を過ごしていただく場所です。医師・看護師・リハビリ職・介護職がチームで関わります。</p>
-        <span class="target">入所してリハビリをしたい方へ</span>
-
-        <details class="more">
-          <summary class="more__head">
-            <span>くわしく見る</span>
-            <span class="more__mark" aria-hidden="true"></span>
-          </summary>
-          <div class="more__body">
-            <!-- ▼差し替え⑬：下層ページのアドレス。ページを作ってから公開してください -->
-            <a class="card-link card-link--in" id="btn-roken-page" href="roken.html">
-              <span class="card-link__text">
-                <strong>介護老人保健施設の<span class="nb">ページへ</span></strong>
-                <small>1日の流れ・お部屋・ご入所までの手順など</small>
-              </span>
-              <span class="card-link__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
-                </svg>
-              </span>
-            </a>
-            <dl class="spec">
-            <div><dt>入所定員</dt><dd><strong>100名</strong><span class="spec-sub">多床室 80床 ／ 個室 20床</span></dd></div>
-            <div><dt>お問い合わせ</dt><dd><a href="tel:0486228170">048-622-8170</a></dd></div>
-            </dl>
-            <ul class="feat">
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></span>
-              <div><h4>在宅強化型の在宅復帰支援</h4><p>「家に帰る」を目標に、リハビリと多職種のケアで在宅復帰をめざします。在宅復帰・在宅療養を支える力が高い施設として、国の基準で「在宅強化型」と認められています。</p></div>
-            </li>
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M4 3h4"/><path d="M14 3h4"/><path d="M11 14v2a5 5 0 0 0 9 3"/><circle cx="20" cy="17" r="2.2"/></svg></span>
-              <div><h4>医師が常勤する医療体制</h4><p>医師が常勤し、日々の健康管理に対応します。歯科往診にも対応できる体制を整えています。</p></div>
-            </li>
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6"/><path d="M20 9v6"/><path d="M7 6v12"/><path d="M17 6v12"/><path d="M7 12h10"/></svg></span>
-              <div><h4>リハビリテーション</h4><p>専門職によるリハビリで、立つ・歩く・食べるといった生活動作の維持・向上をサポートします。</p></div>
-            </li>
-            </ul>
-
-            <!-- ショートステイ（短期入所）※老健の中に入れています -->
-            <div class="sub">
-              <h4 class="sub__title">ショートステイ（短期入所）もご利用いただけます</h4>
-              <p class="sub__lead">医療管理のもとで、リハビリ・介護・生活支援を短い期間だけ受けていただけます。安全な環境で過ごしながら、必要な支援を受けられるのが特徴です。</p>
-              <ul class="feat">
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16.5 6.5a3 3 0 0 1 0 5.6"/><path d="M18 20a5.6 5.6 0 0 0-2.2-4.4"/></svg></span>
-              <div><h4>ご家族の休息（レスパイト）に</h4><p>通院・お仕事・気分転換に。ご家族が休むことは、介護を続ける力になります。</p></div>
-            </li>
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V8"/><path d="M3 13h18v5"/><path d="M21 18v-4a3 3 0 0 0-3-3H9"/><circle cx="6.5" cy="10.5" r="1.8"/></svg></span>
-              <div><h4>入所前のお試しに</h4><p>先に生活のリズムを体験できるので、そのあとの入所がスムーズに進みます。</p></div>
-            </li>
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="1.8"/><path d="M12 8l-2 5 3 2 1 6"/><path d="M10 13l-3 2-1 5"/><path d="M14 9l3 2"/></svg></span>
-              <div><h4>特別養護老人ホームの待機中に</h4><p>入所を待つあいだの負担を軽くします。体調管理や生活の維持にもつながります。</p></div>
-            </li>
-              </ul>
-              <p class="sub__note">ショートステイでも、老健の専門職がリハビリを行います。短い期間でも「身体機能の維持・改善」を目指せるのが強みです。</p>
-              <p class="more__note">ショートステイは平日のみの受け入れです。送迎や体調不良時の対応については、事前にご確認ください。</p>
-            </div>
-          </div>
-        </details>
-      </article>
-
-      <article class="card">
-        <h3>通所リハビリテーション</h3>
-        <p>ご自宅から通っていただき、リハビリと入浴・食事のお手伝いをします。送迎があります。</p>
-        <span class="target">自宅で暮らしながら通いたい方へ</span>
-
-        <details class="more">
-          <summary class="more__head">
-            <span>くわしく見る</span>
-            <span class="more__mark" aria-hidden="true"></span>
-          </summary>
-          <div class="more__body">
-            <!-- ▼差し替え⑬：下層ページのアドレス。ページを作ってから公開してください -->
-            <a class="card-link card-link--in" id="btn-tsusho-page" href="tsusho.html">
-              <span class="card-link__text">
-                <strong>通所リハビリテーションの<span class="nb">ページへ</span></strong>
-                <small>1日の流れ・送迎・リハビリの内容など</small>
-              </span>
-              <span class="card-link__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
-                </svg>
-              </span>
-            </a>
-            <dl class="spec">
-            <div><dt>営業日</dt><dd>月〜金<span class="spec-sub">祝日も営業しています</span></dd></div>
-            <div><dt>利用時間</dt><dd>8:30 〜 17:30<span class="spec-sub">半日からのご利用も可能（曜日は応相談）</span></dd></div>
-            <div><dt>お問い合わせ</dt><dd><a href="tel:0487883100">048-788-3100</a></dd></div>
-            </dl>
-            <ul class="feat">
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16.5 6.5a3 3 0 0 1 0 5.6"/><path d="M18 20a5.6 5.6 0 0 0-2.2-4.4"/></svg></span>
-              <div><h4>3職種の専門職が連携</h4><p>理学療法士・作業療法士・言語聴覚士が在籍。10種類のトレーニング機器でリハビリを行います。要支援の方も個別にリハビリできます。</p></div>
-            </li>
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M4 3h4"/><path d="M14 3h4"/><path d="M11 14v2a5 5 0 0 0 9 3"/><circle cx="20" cy="17" r="2.2"/></svg></span>
-              <div><h4>医師・看護師が常駐</h4><p>パーキンソン病や進行性核上性麻痺などの難病の方、ストーマ・HOT・バルーンをお使いの方もご利用いただけます。</p></div>
-            </li>
-            <li>
-              <span class="feat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-9a3.5 3.5 0 0 1 7-1 3.5 3.5 0 0 1 7 1c0 4.5-7 9-7 9z"/></svg></span>
-              <div><h4>在宅のお困りごとも相談できます</h4><p>福祉用具の選び方や介護の手段をご提案します。ご自宅にうかがって家屋調査を行い、環境の調整も助言します。</p></div>
-            </li>
-            </ul>
-            <p class="more__note">見学はいつでもできます。お気軽にお申しつけください。</p>
-          </div>
-        </details>
-      </article>
-
-      <article class="card">
-        <h3>訪問リハビリテーション<span class="badge badge--soft">ル・サンク湯澤内</span></h3>
-        <p class="card__ident">訪問リハビリステーション くるみ</p>
-        <p>リハビリ職がご自宅にうかがい、住み慣れた部屋でリハビリを行います。手すりの位置など、暮らしに合わせた助言もします。</p>
-        <span class="target">外出がむずかしい方へ</span>
-
-        <!-- ▼差し替え⑪：訪問リハビリは別サイトです。専用サイトができたら href を書き換えてください。
-             いまは法人サイトの訪問リハビリのページを指しています。
-             id="btn-homon-site" は押された回数を数えるために使っています（消さないでください） -->
-        <a class="card-link" id="btn-homon-site"
-           href="https://hakushinkai.jp/facilities/home_visit_rihabili/"
-           target="_blank" rel="noopener">
-          <span class="card-link__text">
-            <strong>訪問リハビリステーション くるみ</strong>
-            <small>くわしい情報は、こちらのサイトでご覧いただけます</small>
-          </span>
-          <span class="card-link__arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
-            </svg>
-          </span>
-        </a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 職員 =====
-     ▼差し替え⑤：写真・職種・一言。ご本人の了解を得てから掲載してください -->
-<section class="section section--white" aria-labelledby="staff-title">
-  <div class="wrap">
-    <h2 class="h2" id="staff-title"><span>お会いするのは、</span><span>この人たちです。</span></h2>
-    <p class="lede">わからないことは、どなたにでも声をかけてください。</p>
-
-    <div class="staff">
-      <figure>
-        <img class="ph-img ph-round" src="staff-1.jpg" alt="理学療法士の職員" width="420" height="420" loading="lazy">
-        <span class="role">理学療法士</span>
-        <p class="voice">「できることを、ひとつずつ増やしていきましょう」</p>
-      </figure>
-      <figure>
-        <img class="ph-img ph-round" src="staff-2.jpg" alt="介護福祉士の職員" width="420" height="420" loading="lazy">
-        <span class="role">介護福祉士</span>
-        <p class="voice">「その方のペースに合わせるのが、いちばん近道です」</p>
-      </figure>
-      <figure>
-        <img class="ph-img ph-round" src="staff-3.jpg" alt="支援相談員の職員" width="420" height="420" loading="lazy">
-        <span class="role">支援相談員</span>
-        <p class="voice">「まずはご家族のお困りごとから、お聞かせください」</p>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 保育園との幼老交流 =====
-     ▼差し替え⑭：写真6枚と説明は仮です。実際の交流の場面に差し替えてください -->
-<section class="section" aria-labelledby="kids-title">
-  <div class="wrap">
-    <h2 class="h2" id="kids-title"><span>保育園のこどもたちと、</span><span>いっしょに。</span></h2>
-    <p class="lede">ル・サンク湯澤の中には、<strong>もみじナースリー</strong>という保育園があります。同じ建物のこどもたちと交流する機会を、<strong>定期的に</strong>設けています。子どもたちとの交流を通して、日々の楽しみや心の活性化につながる時間を大切にしています。</p>
-
-    <ul class="photos">
-      <li class="photos__item">
-        <figure>
-          <img src="kids-1.jpg" alt="こどもたちと過ごすようす" width="640" height="640" loading="lazy">
-          <figcaption>こどもたちが来る日は、いつもより少しにぎやかです</figcaption>
-        </figure>
-      </li>
-      <li class="photos__item">
-        <figure>
-          <img src="kids-2.jpg" alt="いっしょに手あそび" width="640" height="640" loading="lazy">
-          <figcaption>いっしょに、手あそび</figcaption>
-        </figure>
-      </li>
-      <li class="photos__item">
-        <figure>
-          <img src="kids-3.jpg" alt="おやつの時間" width="640" height="640" loading="lazy">
-          <figcaption>おやつの時間も、となりどうし</figcaption>
-        </figure>
-      </li>
-      <li class="photos__item">
-        <figure>
-          <img src="kids-4.jpg" alt="うたを聞かせてもらうようす" width="640" height="640" loading="lazy">
-          <figcaption>うたを聞かせてもらいました</figcaption>
-        </figure>
-      </li>
-      <li class="photos__item">
-        <figure>
-          <img src="kids-5.jpg" alt="絵を見せてもらうようす" width="640" height="640" loading="lazy">
-          <figcaption>「これ、なあに？」</figcaption>
-        </figure>
-      </li>
-      <li class="photos__item">
-        <figure>
-          <img src="kids-6.jpg" alt="手をふって見送るようす" width="640" height="640" loading="lazy">
-          <figcaption>「またね」と手をふって</figcaption>
-        </figure>
-      </li>
-    </ul>
-
-    <p class="photos__note"><span class="check">要確認</span>写真6枚と、それぞれの一言は仮のものです。実際の交流の場面に差し替えてください。交流の回数（月◯回など）が決まっていれば、上の文に書き足せます。</p>
-  </div>
-</section>
-<!-- ===== 食事 =====
-     ▼差し替え⑥：写真と説明 -->
-<section class="section section--white" aria-labelledby="meal-title">
-  <div class="wrap">
-    <h2 class="h2" id="meal-title">食事のこと</h2>
-    <div class="meal">
-      <img class="ph-img" src="meal.jpg" alt="お食事の一例" width="800" height="600" loading="lazy">
-      <div class="meal-text js-fade">
-        <p>栄養士が献立を立て、施設の中で調理しています。かむ力・飲み込む力に合わせて形をととのえたお食事もご用意しています。</p>
-        <p class="meal-sub">「腸活ごはんでおなか活き活きプロジェクト」をはじめ、季節の行事食や各地の郷土料理、手作りおやつなど、毎日の食事を楽しんでいただける工夫を続けています。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Instagram ===== -->
-<section class="section" aria-labelledby="insta-title">
-  <div class="wrap">
-    <h2 class="h2" id="insta-title">ふだんの様子は、Instagramで</h2>
-    <p class="lede">行事の様子や日々のできごとを、職員が投稿しています。</p>
-
-    <!--
-      ▼差し替え⑦：Instagramの埋め込みコード
-      契約したサービス（Tagembed／Elfsight／InstaDriver など）から発行される
-      埋め込みコードを、この下の <div class="insta-embed"> の中身と入れ替えてください。
-      ★ 注意：ここを入れると外部からの読み込みが発生し、ページが重くなります。
-        いま入っている点線の枠は、まだ埋め込みコードが入っていない目印です。
-    -->
-    <div class="insta-embed">
-      Instagramの埋め込みコードが入ります<br>
-      （契約したサービスから発行されるコードを貼り付けてください）
-    </div>
-
-    <!-- Instagramのアカウント（確定：@lecinqyuzawa） -->
-    <a class="insta-link" id="btn-instagram"
-       href="https://www.instagram.com/lecinqyuzawa/"
-       target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="2" y="2" width="20" height="20" rx="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
-      </svg>
-      Instagramで見る
+    <a class="card-link" id="btn-back-top" href="index.html">
+      <span class="card-link__text">
+        <strong>ル・サンク湯澤のトップへ</strong>
+        <small>通所リハビリテーション・訪問リハビリテーションのご案内はこちら</small>
+      </span>
+      <span class="card-link__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
+        </svg>
+      </span>
     </a>
   </div>
 </section>
 
-<!-- ===== 資料のダウンロード ===== -->
 <section class="section section--white" aria-labelledby="dl-title">
   <div class="wrap">
-    <h2 class="h2" id="dl-title"><span>資料を、</span><span>ご覧いただけます。</span></h2>
+    <h2 class="h2" id="dl-title">資料を、ご覧いただけます。</h2>
     <p class="lede">入力なしで、そのままご覧いただけます。印刷してお使いください。</p>
-
     <ul class="dl-list">
-      <!-- ▼差し替え⑨：パンフレットのPDF。ファイル名・更新日・容量を書き換えてください -->
       <li>
-        <a class="dl-item" id="btn-pdf-pamphlet-tsusho"
-           href="pamphlet-tsusho.pdf" target="_blank" rel="noopener">
+        <a class="dl-item" id="btn-pdf-juyojiko-roken-2"
+           href="juyojiko-roken.pdf" target="_blank" rel="noopener">
           <span class="dl-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                  stroke-linecap="round" stroke-linejoin="round">
@@ -1469,20 +1333,16 @@ img{ max-width:100%; display:block; }
             </svg>
           </span>
           <span class="dl-body">
-            <span class="dl-name">通所リハビリテーション パンフレット</span>
-            <span class="dl-meta">PDF ／ 0.5MB ／ 2026年8月更新</span>
+            <span class="dl-name">重要事項説明書（介護老人保健施設）</span>
+            <span class="dl-meta">PDF ／ 0.2MB ／ 2024年11月1日版</span>
           </span>
         </a>
       </li>
 
-      <!-- ▼差し替え⑮：介護老人保健施設のパンフレット。データが届いたら、下の
-           <span class="dl-item dl-item--soon"> を
+      <!-- ▼差し替え⑮：介護老人保健施設のパンフレットが届いたら、下を
            <a class="dl-item" id="btn-pdf-pamphlet" href="pamphlet-roken.pdf" target="_blank" rel="noopener">
            に戻し、閉じタグも </a> に直してください。 -->
       <li>
-        <!-- ▼差し替え⑨：パンフレットのPDFが届いたら、下の <span class="dl-item dl-item--soon"> を
-             <a class="dl-item" id="btn-pdf-pamphlet" href="lecinq-pamphlet.pdf" target="_blank" rel="noopener">
-             に戻し、閉じタグも </a> に直してください。 -->
         <span class="dl-item dl-item--soon">
           <span class="dl-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -1497,10 +1357,9 @@ img{ max-width:100%; display:block; }
           </span>
         </span>
       </li>
-
     </ul>
 
-    <p class="dl-note">開けない場合は、お電話でお送りすることもできます。お気軽にお申しつけください。<br>重要事項説明書（介護老人保健施設・通所リハビリテーション）は、ページ下部のリンクからご覧いただけます。</p>
+    <p class="dl-note">開けない場合は、お電話でお送りすることもできます。お気軽にお申しつけください。</p>
   </div>
 </section>
 
@@ -1509,21 +1368,10 @@ img{ max-width:100%; display:block; }
   <div class="wrap">
     <h2 class="h2" id="cta-title"><span>まずは、</span><span>ご相談ください。</span></h2>
     <p class="lede">ご本人の状態がわからない段階でも大丈夫です。ご家族だけのご見学もできます。</p>
-    <p class="tel3-lead">お電話でのご相談は、ご利用になりたいサービスの番号へどうぞ。</p>
-    <!-- 電話番号はサービスごとに3つ。id は押された回数を数えるために使っています（消さないでください） -->
-    <div class="tel3">
+    <div class="actions actions--visit" style="justify-content:center">
       <a class="btn btn--tel" id="btn-tel-2" href="tel:0486228170">
         <span class="label">介護老人保健施設／ショートステイ</span><span class="num">048-622-8170</span>
       </a>
-      <a class="btn btn--tel" id="btn-tel-2-tsusho" href="tel:0487883100">
-        <span class="label">通所リハビリテーション</span><span class="num">048-788-3100</span>
-      </a>
-      <a class="btn btn--tel" id="btn-tel-2-homon" href="tel:0486228172">
-        <span class="label">訪問リハビリステーション くるみ</span><span class="num">048-622-8172</span>
-      </a>
-    </div>
-    <div class="actions actions--visit">
-      <!-- ▼差し替え②（同じアドレス） -->
       <a class="btn btn--visit" id="btn-visit-2" href="https://hakushinkai.jp/contact/">
         見学・入所のご相談
       </a>

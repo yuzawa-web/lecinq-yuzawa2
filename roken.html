@@ -111,7 +111,11 @@
    色（ここを変えれば全体の色が変わります）
    ========================================================= */
 :root{
-  --bg:          #f7f5f0;
+  --bg:          #fbf7ea;   /* クリーム色。チラシの地の色に合わせました */
+  --sun:         #f7dc3e;   /* 黄色。札や番号に */
+  --sun-soft:    #fdf3b8;   /* うすい黄色。見出しのマーカーに */
+  --leaf:        #a9ce4b;   /* 黄緑 */
+  --leaf-soft:   #eef5da;
   --white:       #ffffff;
   --ink:         #1f2723;
   --ink-soft:    #55605a;
@@ -336,6 +340,59 @@ img{ max-width:100%; display:block; }
 .btn:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:3px; }
 
 /* =========================================================
+   明るくするための仕掛け（2026-09-02 追加）
+   ========================================================= */
+
+/* 背景に浮かぶ、小さな法人ロゴ。飾りなので読み上げ・操作の対象外です。
+   ゆっくり漂います。端末の「動きを減らす」設定では止まります。 */
+.bglogos{ position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+.bglogos span{
+  position:absolute; left:var(--x); top:var(--y);
+  width:var(--s); height:var(--s);
+  background:url("logo-mark.png") no-repeat center / contain;
+  opacity:.10;
+  animation: float var(--d) ease-in-out var(--dl) infinite alternate;
+}
+@keyframes float{
+  from{ transform:translate3d(0,0,0) rotate(0deg); }
+  to  { transform:translate3d(12px,-26px,0) rotate(9deg); }
+}
+/* 中身は必ずロゴより手前に */
+body > *:not(.bglogos){ position:relative; z-index:1; }
+
+/* 見出しに、うすい黄色のマーカー */
+.h2 span, .h2{ background-image:linear-gradient(transparent 68%, var(--sun-soft) 68%); }
+.cta .h2 span, .cta .h2, .pagehead h1{ background-image:none; }
+
+/* 節の変わり目の、波の形 */
+.section--white{ position:relative; z-index:2; }   /* 下側の波を、次の節の上に描くため */
+.section--white::before{
+  content:""; position:absolute; left:0; right:0; top:-22px; height:23px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 23' preserveAspectRatio='none'><path d='M0 23 C 180 2 380 2 620 12 C 860 22 1040 20 1200 5 L1200 23 Z' fill='%23ffffff'/></svg>") no-repeat center bottom / 100% 100%;
+}
+/* 白い節の下側にも、クリーム色の波 */
+.section--white::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:23px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 23' preserveAspectRatio='none'><path d='M0 6 C 180 24 380 24 620 14 C 860 4 1040 2 1200 17 L1200 23 L0 23 Z' fill='%23fbf7ea'/></svg>") no-repeat center bottom / 100% 100%;
+  z-index:1; pointer-events:none;
+}
+.cta{ position:relative; }
+.cta::before{
+  content:""; position:absolute; left:0; right:0; top:-22px; height:23px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 23' preserveAspectRatio='none'><path d='M0 23 C 180 2 380 2 620 12 C 860 22 1040 20 1200 5 L1200 23 Z' fill='%232b6151'/></svg>") no-repeat center bottom / 100% 100%;
+}
+
+/* スクロールしたとき、下から小さく出てくる。
+   全部おなじ動き・1回だけ。仕組みが動かない端末では、最初から出たままです。 */
+.reveal{ opacity:0; transform:translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.is-in{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion: reduce){
+  .bglogos span{ animation:none; }
+  .reveal{ opacity:1; transform:none; transition:none; }
+}
+
+/* =========================================================
    おうちに帰るまでの流れ（4段）
    動きは付けていません。見せ場は1枚目の一行だけ、というきまりのためです。
    ========================================================= */
@@ -347,15 +404,15 @@ img{ max-width:100%; display:block; }
 }
 .flow__item:last-child{ border-left-color:transparent; padding-bottom:0; }
 .flow__item::before{
-  content:""; position:absolute; left:-9px; top:5px;
-  width:16px; height:16px; border-radius:50%;
-  background:var(--accent); border:3px solid var(--bg);
+  content:""; position:absolute; left:-10px; top:5px;
+  width:18px; height:18px; border-radius:50%;
+  background:var(--accent); border:3px solid var(--sun);
 }
 .flow__label{
   display:inline-block; margin-bottom:.5em;
-  background:var(--accent-pale); color:var(--accent-dark);
+  background:var(--sun-soft); color:var(--accent-dark);
   font-size:.78rem; font-weight:700; letter-spacing:.06em;
-  padding:3px 12px; border-radius:999px;
+  padding:4px 14px; border-radius:999px;
 }
 .flow__item h3{ font-size:1.08rem; line-height:1.6; margin:0 0 .45em; }
 .flow__item p{ margin:0 0 .6em; color:var(--ink-soft); }
@@ -421,8 +478,8 @@ img{ max-width:100%; display:block; }
 .tags{ display:flex; flex-wrap:wrap; gap:8px; list-style:none; margin:0 0 1.8em; padding:0; }
 .tags li{
   font-size:.82rem; font-weight:700; color:var(--accent-dark);
-  background:var(--accent-pale); border:1px solid rgba(43,97,81,.28);
-  border-radius:6px; padding:5px 12px; white-space:nowrap;
+  background:var(--sun-soft); border:1px solid rgba(191,160,20,.35);
+  border-radius:999px; padding:6px 14px; white-space:nowrap;
 }
 
 /* 一貫サポート体制の図（入所 → 退所調整 → 在宅療養） */
@@ -436,9 +493,9 @@ img{ max-width:100%; display:block; }
 }
 .stage__no{
   display:inline-flex; align-items:center; justify-content:center;
-  width:26px; height:26px; margin-bottom:.6em;
-  background:var(--accent); color:#fff; border-radius:50%;
-  font-size:.82rem; font-weight:700;
+  width:30px; height:30px; margin-bottom:.6em;
+  background:var(--sun); color:var(--accent-dark); border-radius:50%;
+  font-size:.86rem; font-weight:700;
 }
 .stage__name{ font-size:1.06rem; font-weight:700; line-height:1.5; margin:0 0 .35em; }
 .stage__sub{ font-size:.9rem; color:var(--ink-soft); margin:0; line-height:1.7; }
@@ -1073,6 +1130,24 @@ img{ max-width:100%; display:block; }
   .facts > div{ grid-template-columns:1fr; gap:.2em; }
 }
 </style>
+</head>
+
+<body>
+<!-- 背景に浮かぶ小さな法人ロゴ（飾り）。読み上げの対象からは外しています -->
+<div class="bglogos" aria-hidden="true">
+  <span style="--x:4%;--y:8%;--s:52px;--d:30s;--dl:0s"></span>
+  <span style="--x:88%;--y:14%;--s:38px;--d:26s;--dl:-4s"></span>
+  <span style="--x:16%;--y:30%;--s:30px;--d:34s;--dl:-9s"></span>
+  <span style="--x:72%;--y:36%;--s:56px;--d:28s;--dl:-2s"></span>
+  <span style="--x:8%;--y:56%;--s:42px;--d:32s;--dl:-14s"></span>
+  <span style="--x:92%;--y:62%;--s:32px;--d:24s;--dl:-6s"></span>
+  <span style="--x:30%;--y:74%;--s:36px;--d:36s;--dl:-11s"></span>
+  <span style="--x:64%;--y:84%;--s:48px;--d:27s;--dl:-3s"></span>
+  <span style="--x:46%;--y:20%;--s:26px;--d:31s;--dl:-17s"></span>
+  <span style="--x:20%;--y:92%;--s:30px;--d:25s;--dl:-8s"></span>
+</div>
+
+
 <!-- ===== 上の帯 ===== -->
 <header class="header">
   <div class="header__id">
@@ -1472,6 +1547,50 @@ img{ max-width:100%; display:block; }
 </div>
 
 <script>
+/* スクロールで、下から小さく出す。
+   ・全部おなじ動き（14px上がりながら濃くなる）
+   ・一度出たら、それきり
+   ・この仕組みが動かない端末では、最初から出たままになります（消えません）
+   ・端末の「動きを減らす」設定のときは、動かしません */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) return;
+  var sel = '.section .h2, .section .lede, .tags, .stages, .stages__back, .flow__item,'
+          + ' .group-note, .sub-h, .sub-lede, .cards, .photos, .photos__note, .staff,'
+          + ' .meal, .insta-box, .dl-list, .dl-note, .facts, .day-grid, .steps,'
+          + ' .fee-total, .tablewrap, .flow-note';
+  var els = Array.prototype.slice.call(document.querySelectorAll(sel));
+  els.forEach(function(el){ el.classList.add('reveal'); });
+  function show(el){ el.classList.add('is-in'); io.unobserve(el); }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      /* 画面に入ったとき。または、速くスクロールして通り過ぎたとき（上に出たとき）も出します */
+      if (e.isIntersecting || e.boundingClientRect.top < 0) show(e.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  els.forEach(function(el){ io.observe(el); });
+
+  /* 念のための保険。一気に飛んだときに出そびれた要素を、あとから出します。
+     これがないと、画面の外に取り残されたまま消えてしまうことがあります。 */
+  var pending = true;
+  function sweep(){
+    var rest = els.filter(function(el){ return !el.classList.contains('is-in'); });
+    rest.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.95) show(el);
+    });
+    if (rest.length === 0){
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', sweep);
+    }
+    pending = true;
+  }
+  function onScroll(){ if (pending){ pending = false; requestAnimationFrame(sweep); } }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', sweep);
+  setTimeout(sweep, 1200);
+})();
+
 /* 画面下のバーを、ページ最後の「まずは、ご相談ください。」が
    見えているあいだだけ隠します。それ以外は何もしていません。
    この仕組みが使えない古い端末では、バーはずっと表示されたままになります

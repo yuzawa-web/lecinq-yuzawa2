@@ -1072,6 +1072,16 @@ body > *:not(.bglogos){ position:relative; z-index:1; }
   content:""; width:56px; height:1px; background:var(--accent); opacity:.5;
 }
 .deco-label span{ display:inline-flex; align-items:center; gap:12px; }
+h3.deco-label{ font-size:1.05rem; }
+.deco-label--gap{ margin-top:3.4em; }
+@media (max-width:560px){
+  .deco-label{ display:block; text-align:center; }
+  .deco-label::before, .deco-label::after{ display:none; }
+  .deco-label span{ display:inline; }
+  .deco-label span::before, .deco-label span::after{
+    display:inline-block; vertical-align:middle; margin:0 10px;
+  }
+}
 .deco-label span::before, .deco-label span::after{
   content:""; width:7px; height:7px; border-radius:50%; background:var(--accent);
 }

@@ -1072,6 +1072,16 @@ body > *:not(.bglogos){ position:relative; z-index:1; }
   content:""; width:56px; height:1px; background:var(--accent); opacity:.5;
 }
 .deco-label span{ display:inline-flex; align-items:center; gap:12px; }
+h3.deco-label{ font-size:1.05rem; }
+.deco-label--gap{ margin-top:3.4em; }
+@media (max-width:560px){
+  .deco-label{ display:block; text-align:center; }
+  .deco-label::before, .deco-label::after{ display:none; }
+  .deco-label span{ display:inline; }
+  .deco-label span::before, .deco-label span::after{
+    display:inline-block; vertical-align:middle; margin:0 10px;
+  }
+}
 .deco-label span::before, .deco-label span::after{
   content:""; width:7px; height:7px; border-radius:50%; background:var(--accent);
 }
@@ -1491,11 +1501,13 @@ body > *:not(.bglogos){ position:relative; z-index:1; }
   </div>
 </section>
 
-<!-- ===== 保育園との幼老交流 =====
-     ▼差し替え⑭：写真6枚と説明は仮です。実際の交流の場面に差し替えてください -->
+<!-- ===== 保育園との交流／リハビリの機器 =====
+     ▼差し替え⑭：写真6枚と説明は仮です。実際の場面に差し替えてください -->
 <section class="section" aria-labelledby="kids-title">
   <div class="wrap">
-    <h2 class="h2" id="kids-title"><span>保育園のこどもたちと、</span><span>いっしょに。</span></h2>
+    <h2 class="h2" id="kids-title"><span>ル・サンク湯澤の、</span><span>ふだんの風景。</span></h2>
+
+    <h3 class="deco-label"><span>保育園のこどもたちと、いっしょに</span></h3>
     <p class="lede">ル・サンク湯澤の中には、<strong>もみじナースリー</strong>という保育園があります。同じ建物のこどもたちと交流する機会を、<strong>定期的に</strong>設けています。子どもたちとの交流を通して、日々の楽しみや心の活性化につながる時間を大切にしています。</p>
 
     <ul class="photos">
@@ -1513,31 +1525,37 @@ body > *:not(.bglogos){ position:relative; z-index:1; }
       </li>
       <li class="photos__item">
         <figure>
-          <img src="kids-3.jpg" alt="おやつの時間" width="640" height="640" loading="lazy">
-          <figcaption>おやつの時間も、となりどうし</figcaption>
-        </figure>
-      </li>
-      <li class="photos__item">
-        <figure>
-          <img src="kids-4.jpg" alt="うたを聞かせてもらうようす" width="640" height="640" loading="lazy">
-          <figcaption>うたを聞かせてもらいました</figcaption>
-        </figure>
-      </li>
-      <li class="photos__item">
-        <figure>
-          <img src="kids-5.jpg" alt="絵を見せてもらうようす" width="640" height="640" loading="lazy">
-          <figcaption>「これ、なあに？」</figcaption>
-        </figure>
-      </li>
-      <li class="photos__item">
-        <figure>
-          <img src="kids-6.jpg" alt="手をふって見送るようす" width="640" height="640" loading="lazy">
+          <img src="kids-3.jpg" alt="手をふって見送るようす" width="640" height="640" loading="lazy">
           <figcaption>「またね」と手をふって</figcaption>
         </figure>
       </li>
     </ul>
 
-    <p class="photos__note"><span class="check">要確認</span>写真6枚と、それぞれの一言は仮のものです。実際の交流の場面に差し替えてください。交流の回数（月◯回など）が決まっていれば、上の文に書き足せます。</p>
+    <h3 class="deco-label deco-label--gap"><span>歩行トレーニングロボットも、あります</span></h3>
+    <p class="lede">「もう一度、自分の足で歩きたい」。その気持ちにこたえるために、<strong>歩行トレーニングロボット</strong>をはじめとしたリハビリの機器をそろえています。理学療法士・作業療法士・言語聴覚士が、その方の状態に合わせて使い方を考えます。</p>
+
+    <ul class="photos">
+      <li class="photos__item">
+        <figure>
+          <img src="robo-1.jpg" alt="歩行トレーニングロボットを使った練習" width="640" height="640" loading="lazy">
+          <figcaption>歩行トレーニングロボットで、歩く練習</figcaption>
+        </figure>
+      </li>
+      <li class="photos__item">
+        <figure>
+          <img src="robo-2.jpg" alt="平行棒を使った歩行の練習" width="640" height="640" loading="lazy">
+          <figcaption>くり返し歩いて、力を取りもどしていきます</figcaption>
+        </figure>
+      </li>
+      <li class="photos__item">
+        <figure>
+          <img src="robo-3.jpg" alt="リハビリの機器を使うようす" width="640" height="640" loading="lazy">
+          <figcaption>その方に合わせて、負荷や時間を決めます</figcaption>
+        </figure>
+      </li>
+    </ul>
+
+    <p class="photos__note"><span class="check">要確認</span>写真6枚と、それぞれの一言は仮のものです。交流の回数（月◯回など）と、使っている歩行トレーニングロボットの正しい名前・そのほかの機器の名前を確かめて、書き足してください。</p>
   </div>
 </section>
 <!-- ===== 食事 =====

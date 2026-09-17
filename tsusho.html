@@ -1325,6 +1325,29 @@ h3.deco-label{ font-size:1.05rem; }
   font-size:.95rem;
 }
 .pickup strong{ color:var(--accent-dark); }
+
+/* 細い画面（320px）で、Instagramのアカウント名がはみ出さないように */
+.insta-link{ flex-wrap:wrap; max-width:100%; }
+.insta-acct{ word-break:break-all; }
+
+/* =========================================================
+   下層ページ → 施設のトップへ戻る案内
+   ========================================================= */
+.backlink{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 1.3em; }
+.backlink a{
+  display:inline-flex; align-items:center; gap:.5em;
+  background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.6);
+  color:#fff; text-decoration:none; font-weight:700; font-size:.88rem;
+  border-radius:999px; padding:9px 18px; min-height:42px;
+  transition: background-color .18s ease, color .18s ease;
+}
+.backlink a:hover{ background:#fff; color:var(--accent-dark); }
+.backlink a:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+.backlink svg{ width:16px; height:16px; flex:none; }
+.backlink__now{ font-size:.82rem; color:rgba(255,255,255,.8); }
+@media (max-width:480px){
+  .backlink__now{ font-size:.78rem; }
+}
 </style>
 </head>
 
@@ -1355,6 +1378,12 @@ h3.deco-label{ font-size:1.05rem; }
        btn-nav-… の印は、押された回数を数えるために使っています（消さないでください）。 -->
   <nav class="gnav" aria-label="事業所のご案内">
     <ul class="gnav__list" id="gnav-list">
+      <li class="gnav__sponly">
+        <a class="gnav__a" id="btn-nav-top" href="index.html">
+          <span class="gnav__ttl">ル・サンク湯澤 トップ</span>
+          <small>施設ぜんたいのご案内</small>
+        </a>
+      </li>
       <li>
         <a class="gnav__a" id="btn-nav-roken" href="roken.html">
           <span class="gnav__ttl">介護老人保健施設</span>
@@ -1410,7 +1439,11 @@ h3.deco-label{ font-size:1.05rem; }
 <!-- ===== ページの見出し ===== -->
 <div class="pagehead">
   <div class="wrap">
-    <p class="crumb"><a href="index.html">ル・サンク湯澤</a> ／ 通所リハビリテーション</p>
+    <!-- 施設のトップへ戻る案内。btn-back-head の印は消さないでください -->
+    <p class="backlink">
+      <a href="index.html" id="btn-back-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5"/><path d="M11 18l-6-6 6-6"/></svg>ル・サンク湯澤 トップへ</a>
+      <span class="backlink__now">いま見ているページ：通所リハビリテーションのページ</span>
+    </p>
     <h1>通所リハビリテーション<span class="badge">送迎あり</span></h1>
     <p>ご自宅から通っていただき、リハビリと入浴・お食事のお手伝いをします。半日からのご利用もできます。</p>
   </div>

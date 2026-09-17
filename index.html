@@ -1033,19 +1033,119 @@ body > *:not(.bglogos){ position:relative; z-index:1; }
   .only-pc{ display:none; }
 }
 
-/* ヘッダーの2つのリンクを右側にまとめる */
-.header__links{ display:flex; gap:8px; flex:none; }
+/* =========================================================
+   上の帯のメニュー
+   パソコン（1100px以上）：横に並べる
+   それより細い画面　　　：「メニュー」ボタンを押すと下に開く
+   ========================================================= */
+/* 上の帯を、下の内容より前に置きます（メニューが写真の裏に回らないように）。
+   361行目あたりの「body > *」の指定より強くするため、body > を付けています。 */
+body > .header{ position:relative; z-index:60; }
+.gnav{ flex:none; display:flex; align-items:center; gap:8px; }
+
+/* 上の帯のお問い合わせボタン（パソコン・スマホとも出ます） */
+.gnav__cta{
+  display:inline-flex; align-items:center; gap:.45em; flex:none;
+  background:var(--accent); color:#fff; border:2px solid var(--accent);
+  border-radius:8px; padding:8px 16px; min-height:40px;
+  font-size:.8rem; font-weight:700; text-decoration:none; white-space:nowrap;
+  transition: background-color .18s ease, border-color .18s ease;
+}
+.gnav__cta:hover{ background:var(--accent-dark); border-color:var(--accent-dark); }
+.gnav__cta:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:3px; }
+.gnav__cta svg{ width:15px; height:15px; flex:none; }
+.gnav__sponly{ display:none; }
+
+.gnav__toggle{
+  display:none; align-items:center; gap:8px;
+  background:var(--white); border:1px solid var(--line); border-radius:8px;
+  padding:8px 13px; min-height:40px; cursor:pointer;
+  font:inherit; font-size:.8rem; font-weight:700; color:var(--accent-dark);
+}
+.gnav__toggle:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:3px; }
+.gnav__bars{ display:inline-block; width:17px; height:13px; position:relative; flex:none; }
+.gnav__bars span{
+  position:absolute; left:0; width:100%; height:2px; border-radius:2px;
+  background:var(--accent);
+  transition: transform .2s ease, opacity .2s ease;
+}
+.gnav__bars span:nth-child(1){ top:0; }
+.gnav__bars span:nth-child(2){ top:5.5px; }
+.gnav__bars span:nth-child(3){ top:11px; }
+.gnav.is-open .gnav__bars span:nth-child(1){ transform:translateY(5.5px) rotate(45deg); }
+.gnav.is-open .gnav__bars span:nth-child(2){ opacity:0; }
+.gnav.is-open .gnav__bars span:nth-child(3){ transform:translateY(-5.5px) rotate(-45deg); }
+
+.gnav__list{ list-style:none; margin:0; padding:0; display:flex; align-items:center; gap:2px; }
+.gnav__a{
+  display:inline-flex; align-items:center;
+  padding:9px 11px; border-radius:8px;
+  font-size:.8rem; font-weight:700; line-height:1.4;
+  color:var(--accent-dark); text-decoration:none;
+  transition: background-color .18s ease, color .18s ease;
+}
+.gnav__a:hover{ background:var(--leaf-soft); }
+.gnav__a:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:2px; }
+.gnav__a small{ display:none; }
+.gnav__ttl{ white-space:nowrap; }
+.gnav__mark{ display:inline-block; width:12px; height:12px; margin-left:.3em; vertical-align:-1px; }
+.gnav__mark svg{ width:100%; height:100%; display:block; }
+.gnav__a--recruit{ border:1px solid var(--accent); margin-left:6px; }
+.gnav__a--recruit:hover{ background:var(--accent); color:#fff; }
+
+@media (max-width:1099px){
+  .gnav__toggle{ display:inline-flex; }
+  .gnav__list{
+    display:none;
+    position:absolute; right:0; top:calc(100% + 10px);
+    width:min(320px, calc(100vw - 32px));
+    flex-direction:column; align-items:stretch; gap:0;
+    background:var(--white); border:1px solid var(--line); border-radius:12px;
+    box-shadow:0 12px 32px rgba(31,39,35,.16); padding:8px; z-index:70;
+  }
+  .gnav.is-open .gnav__list{ display:flex; }
+  .gnav__a{
+    display:flex; flex-direction:column; align-items:flex-start; gap:.15em;
+    padding:13px 14px; font-size:.95rem; border-radius:8px;
+  }
+  .gnav__a small{ display:block; font-size:.78rem; font-weight:400; color:var(--ink-soft); }
+  .gnav__ttl{ white-space:normal; }
+  .gnav__sponly{ display:block; }
+  .gnav__a--cta{
+    display:flex; flex-direction:row; align-items:center; justify-content:center; gap:.5em;
+    background:var(--accent); color:#fff; border-radius:8px;
+    padding:15px 14px; font-size:1rem; margin-bottom:4px;
+  }
+  .gnav__a--cta:hover{ background:var(--accent-dark); color:#fff; }
+  .gnav__a--cta svg{ width:18px; height:18px; flex:none; }
+  .gnav__a--recruit{
+    border:none; border-top:1px solid var(--line); border-radius:0;
+    margin:5px 0 0; padding-top:16px;
+  }
+  .gnav__a--recruit:hover{ background:var(--leaf-soft); color:var(--accent-dark); }
+}
 @media (max-width:520px){
-  .header__links{ gap:6px; }
-  .header__links .link-recruit{ font-size:.74rem; padding:7px 11px; min-height:36px; }
-  /* リンクが2つに増えたぶん、施設名とグループ名を少し小さくします。
-     グループ名は途中で折れると読みにくいので、折り返し禁止にしています。 */
-  .header .facility{ font-size:.82rem; }
-  .header .group{ font-size:.68rem; white-space:nowrap; }
+  .gnav__togtxt{ display:none; }
+  .gnav__toggle{ padding:9px 11px; }
+  /* 細い画面では、上の帯のボタンは吹き出しの絵だけにします */
+  .gnav__ctatxt{ display:none; }
+  .gnav__cta{ padding:8px 12px; }
+  .gnav{ gap:6px; }
 }
-@media (max-width:380px){
-  .header__links .link-recruit{ font-size:.7rem; padding:6px 9px; }
+
+/* =========================================================
+   Instagram（もう一方のアカウントへの案内）
+   ========================================================= */
+.insta-sub{
+  margin-top:1.8em; background:var(--white); border:1px solid var(--line);
+  border-radius:12px; padding:18px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:14px; flex-wrap:wrap;
 }
+.insta-sub__t{ margin:0; font-size:.95rem; color:var(--ink-soft); line-height:1.7; }
+.insta-sub__t strong{ color:var(--ink); }
+.insta-link--sub{ padding:11px 18px; min-height:48px; font-size:.9rem; }
+.insta-acct{ font-weight:400; font-size:.85em; }
 
 /* 動きを減らす設定の端末では、色の変化を一瞬に */
 @media (prefers-reduced-motion: reduce){
@@ -1155,16 +1255,61 @@ h3.deco-label{ font-size:1.05rem; }
     <span class="facility">ル・サンク湯澤</span>
     <span class="group">医療法人博滇会グループ</span>
   </div>
-  <div class="header__links">
-  <!-- ▼差し替え③：求人情報のアドレス
-       いまは法人の採用ページ。施設ごとの求人ページができたらそちらへ。
-       うしろの「?utm_...」は、どこから応募につながったかを数えるための印です。
-       消さないでください。 -->
-  <a class="link-recruit" id="btn-recruit-header"
-     href="https://hakushinkai.jp/recuitment?utm_source=lecinq&amp;utm_medium=site&amp;utm_campaign=recruit">
-    採用情報
-  </a>
-  </div>
+  <!-- ▼上の帯のメニュー
+       パソコンでは横に並び、スマホでは「メニュー」ボタン（ハンバーガー）になります。
+       btn-nav-… の印は、押された回数を数えるために使っています（消さないでください）。 -->
+  <nav class="gnav" aria-label="事業所のご案内">
+    <ul class="gnav__list" id="gnav-list">
+      <li>
+        <a class="gnav__a" id="btn-nav-roken" href="roken.html">
+          <span class="gnav__ttl">介護老人保健施設</span>
+          <small>入所・ショートステイ</small>
+        </a>
+      </li>
+      <li>
+        <a class="gnav__a" id="btn-nav-tsusho" href="tsusho.html">
+          <span class="gnav__ttl">通所リハビリテーション</span>
+          <small>半日からのご利用もできます</small>
+        </a>
+      </li>
+      <li>
+        <a class="gnav__a" id="btn-nav-homon" href="https://hakushinkai.jp/facilities/home_visit_rihabili/"
+           target="_blank" rel="noopener">
+          <span class="gnav__ttl">訪問リハビリステーション くるみ<span class="gnav__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg></span></span>
+          <small>別のサイトが開きます</small>
+        </a>
+      </li>
+      <li class="gnav__sponly">
+        <!-- ▼差し替え②：問い合わせページのアドレス（メニューの中のお問い合わせボタン） -->
+        <a class="gnav__a gnav__a--cta" id="btn-visit-menu" href="https://hakushinkai.jp/contact/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span class="gnav__ttl">見学・ご相談</span>
+        </a>
+      </li>
+      <li>
+        <!-- ▼差し替え③：求人情報のアドレス
+             いまは法人の採用ページ。施設ごとの求人ページができたらそちらへ。
+             うしろの「?utm_...」は、どこから応募につながったかを数えるための印です。
+             消さないでください。 -->
+        <a class="gnav__a gnav__a--recruit" id="btn-recruit-header" href="https://hakushinkai.jp/recuitment?utm_source=lecinq&amp;utm_medium=site&amp;utm_campaign=recruit">
+          <span class="gnav__ttl">採用情報</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- ▼差し替え②：問い合わせページのアドレス（上の帯のお問い合わせボタン）
+         btn-visit-header は押された回数を数えるための印です（消さないでください） -->
+    <a class="gnav__cta" id="btn-visit-header" href="https://hakushinkai.jp/contact/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span class="gnav__ctatxt">見学・ご相談</span>
+    </a>
+
+    <button class="gnav__toggle" type="button" id="btn-menu"
+            aria-expanded="false" aria-controls="gnav-list" aria-label="メニューを開く">
+      <span class="gnav__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="gnav__togtxt">メニュー</span>
+    </button>
+  </nav>
 </header>
 
 <!-- ===== 1枚目 ===== -->
@@ -1577,10 +1722,12 @@ h3.deco-label{ font-size:1.05rem; }
 <section class="section" aria-labelledby="insta-title">
   <div class="wrap">
     <h2 class="h2" id="insta-title">ふだんの様子は、Instagramで</h2>
-    <p class="lede">行事の様子や日々のできごとを、職員が投稿しています。</p>
+    <p class="lede">行事の様子や日々のできごとを、職員が投稿しています。入所と通所リハビリで、それぞれ別のアカウントがあります。</p>
+
+    <h3 class="deco-label"><span>介護老人保健施設（入所）のInstagram</span></h3>
 
     <!--
-      ▼差し替え⑦：Instagramの埋め込みコード
+      ▼差し替え⑦：Instagramの埋め込みコード（介護老人保健施設）
       契約したサービス（Tagembed／Elfsight／InstaDriver など）から発行される
       埋め込みコードを、この下の <div class="insta-embed"> の中身と入れ替えてください。
       ★ 注意：ここを入れると外部からの読み込みが発生し、ページが重くなります。
@@ -1588,7 +1735,7 @@ h3.deco-label{ font-size:1.05rem; }
     -->
     <div class="insta-embed">
       Instagramの埋め込みコードが入ります<br>
-      （契約したサービスから発行されるコードを貼り付けてください）
+      （@lecinqyuzawa のコードを貼り付けてください）
     </div>
 
     <!-- Instagramのアカウント（確定：@lecinqyuzawa） -->
@@ -1601,8 +1748,24 @@ h3.deco-label{ font-size:1.05rem; }
         <circle cx="12" cy="12" r="4"/>
         <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
       </svg>
-      Instagramで見る
+      Instagramで見る<span class="insta-acct">（@lecinqyuzawa）</span>
     </a>
+
+    <!-- 通所リハビリのアカウントへの案内 -->
+    <div class="insta-sub">
+      <p class="insta-sub__t"><strong>通所リハビリテーション</strong>は、別のアカウントで発信しています。</p>
+      <a class="insta-link insta-link--sub" id="btn-instagram-tsusho"
+         href="https://www.instagram.com/lecinq_yuzawa_dc/"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+      </svg>
+        通所リハビリの<span class="nb">Instagram</span><span class="insta-acct">（@lecinq_yuzawa_dc）</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1837,6 +2000,31 @@ h3.deco-label{ font-size:1.05rem; }
       bar.classList.toggle('is-hidden', entry.isIntersecting);
     });
   }, { threshold: 0.2 }).observe(cta);
+})();
+
+/* ===== 上の帯のメニュー（スマホのハンバーガー）の開け閉め ===== */
+(function () {
+  var nav = document.querySelector('.gnav');
+  if (!nav) return;
+  var btn = nav.querySelector('.gnav__toggle');
+  if (!btn) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  }
+  btn.addEventListener('click', function () {
+    setOpen(btn.getAttribute('aria-expanded') !== 'true');
+  });
+  /* メニューの外を押したら閉じる */
+  document.addEventListener('click', function (e) {
+    if (!nav.contains(e.target)) setOpen(false);
+  });
+  /* Escキーでも閉じる */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc') setOpen(false);
+  });
 })();
 
 /* 食事の説明を、画面に入ったときにふわっと濃くします。

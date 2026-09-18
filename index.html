@@ -234,7 +234,7 @@ img{ max-width:100%; display:block; }
   background-image: var(--fv-photo);
   /* お顔が画面の上のほうに来るようにしています。
      ノートパソコンなど、たての短い画面でも手書き文字がお顔にかからないようにするためです。 */
-  background-size:cover; background-position:50% 12%;
+  background-size:cover; background-position:50% 21%;
   background-color:#e8e4dc;   /* 写真が読めなかったときの色 */
 }
 
@@ -1342,6 +1342,22 @@ body.is-locked{ overflow:hidden; }
   .fv .lead{ font-size: clamp(1.5rem, 3.8vw, 2.4rem); }
   .fv .services{ margin-bottom:1.1em; }
   .fv .btn{ min-height:50px; font-size:.95rem; }
+}
+
+/* =========================================================
+   1枚目の文字を、まんなかぞろえにする（2026-09-18）
+   ========================================================= */
+.fv__inner{ text-align:center; }
+.fv .services{ justify-content:center; }
+.fv .actions{ justify-content:center; }
+
+/* よこに長く、たてがとても短い画面のとき（窓を上下につぶしたときなど）は、
+   お顔が切れないように写真の位置を下げ、文字をさらに小さくします。 */
+@media (min-width:641px) and (min-aspect-ratio: 21/10){
+  .fv::before{ background-position:50% 10%; }
+  .fv .lead{ font-size: clamp(1.4rem, 3vw, 2.1rem); margin-bottom:.35em; }
+  .fv .services{ margin-bottom:.9em; }
+  .fv .btn{ min-height:48px; font-size:.92rem; }
 }
 </style>
 </head>

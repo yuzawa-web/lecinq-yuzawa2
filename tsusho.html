@@ -1351,6 +1351,31 @@ h3.deco-label{ font-size:1.05rem; }
 @media (max-width:480px){
   .backlink__now{ font-size:.78rem; }
 }
+
+/* =========================================================
+   1日の流れに写真を並べる（2026-09-18）
+   ========================================================= */
+.timeline--pics li{
+  grid-template-columns:5.4em 1fr minmax(0, 220px);
+  gap:18px; align-items:center; padding:14px 0;
+}
+.timeline--pics .w{ font-size:.98rem; }
+.timeline--pics .wt{ font-weight:700; }
+.tlpic{ margin:0; }
+.tlpic img{
+  width:100%; height:auto; aspect-ratio:4/3; object-fit:cover;
+  border-radius:10px; display:block; background:var(--line);
+}
+.tlpic figcaption{ margin-top:.4em; font-size:.8rem; color:var(--ink-soft); line-height:1.55; }
+@media (max-width:760px){
+  /* 細い画面では、写真を文の下に回します */
+  .timeline--pics li{ grid-template-columns:5.4em 1fr; align-items:start; }
+  .tlpic{ grid-column:1 / -1; margin-top:.6em; max-width:420px; }
+}
+@media (max-width:480px){
+  .timeline--pics li{ grid-template-columns:1fr; gap:.35em; }
+  .tlpic{ grid-column:auto; max-width:100%; }
+}
 </style>
 </head>
 
@@ -1507,62 +1532,108 @@ h3.deco-label{ font-size:1.05rem; }
   </div>
 </section>
 
+<!-- ===== 1日の流れ（写真つき）=====
+     「1日の流れ」と「こんなふうに、過ごします。」をひとつにまとめました（2026-09-18）。
+     写真は、その時間のところに置いてあります。 -->
 <section class="section" aria-labelledby="day-title">
   <div class="wrap">
-    <h2 class="h2" id="day-title">1日の流れ</h2>
-    <p class="lede">おおよその流れです。実際は体調やご希望に合わせて調整します。</p>
-    <ol class="timeline">
-      <li><span class="t">9:30</span><span class="w">お迎え・施設到着</span></li>
-      <li><span class="t">10:15</span><span class="w">朝の会・健康チェック</span></li>
-      <li><span class="t">10:20</span><span class="w">体操・脳トレ<small>入浴・個別リハビリ（ご希望の方）</small></span></li>
-      <li><span class="t">11:45</span><span class="w">口腔体操<small>入浴・個別リハビリ（ご希望の方）</small></span></li>
-      <li><span class="t">12:00</span><span class="w">昼食・休憩</span></li>
-      <li><span class="t">13:30</span><span class="w">製作活動</span></li>
-      <li><span class="t">14:30</span><span class="w">レクリエーション</span></li>
-      <li><span class="t">15:15</span><span class="w">手作りおやつ</span></li>
-      <li><span class="t">15:30</span><span class="w">帰宅準備・ご自宅へ送迎</span></li>
+    <h2 class="h2" id="day-title"><span>こんなふうに、</span><span>1日を過ごします。</span></h2>
+    <p class="lede">運動のためのリハビリだけではありません。送迎・入浴・お食事・レクリエーションまで、<strong>暮らしを支えるものが、ここにそろっています。</strong>おおよその流れです。実際は体調やご希望に合わせて調整します。</p>
+
+    <ol class="timeline timeline--pics">
+      <li>
+        <span class="t">9:30</span>
+        <div class="w">
+          <span class="wt">お迎え・施設到着</span>
+        </div>
+        <figure class="tlpic">
+          <!-- ▼差し替え：本番の写真に差し替えてください（いまは仮の画像です） -->
+          <img src="tsusho-1-sougei.jpg" alt="送迎車の様子" width="640" height="480" loading="lazy">
+          <figcaption>安心の送迎サービス。ご自宅までお迎えにうかがいます</figcaption>
+        </figure>
+      </li>
+      <li>
+        <span class="t">10:15</span>
+        <div class="w">
+          <span class="wt">朝の会・健康チェック</span>
+        </div>
+      </li>
+      <li>
+        <span class="t">10:20</span>
+        <div class="w">
+          <span class="wt">体操・脳トレ</span>
+          <small>入浴・個別リハビリ（ご希望の方）</small>
+        </div>
+        <figure class="tlpic">
+          <!-- ▼差し替え：本番の写真に差し替えてください（いまは仮の画像です） -->
+          <img src="tsusho-4-bath.jpg" alt="入浴設備の様子" width="640" height="480" loading="lazy">
+          <figcaption>入浴は手すりつきの浴槽です（ご希望の方）</figcaption>
+        </figure>
+      </li>
+      <li>
+        <span class="t">11:45</span>
+        <div class="w">
+          <span class="wt">口腔体操</span>
+          <small>入浴・個別リハビリ（ご希望の方）</small>
+        </div>
+      </li>
+      <li>
+        <span class="t">12:00</span>
+        <div class="w">
+          <span class="wt">昼食・休憩</span>
+        </div>
+        <figure class="tlpic">
+          <!-- ▼差し替え：本番の写真に差し替えてください（いまは仮の画像です） -->
+          <img src="tsusho-5-meal.jpg" alt="食事の様子" width="640" height="480" loading="lazy">
+          <figcaption>管理栄養士監修の献立。行事食もあります</figcaption>
+        </figure>
+      </li>
+      <li>
+        <span class="t">13:30</span>
+        <div class="w">
+          <span class="wt">製作活動</span>
+        </div>
+        <figure class="tlpic">
+          <!-- ▼差し替え：本番の写真に差し替えてください（いまは仮の画像です） -->
+          <img src="tsusho-7-work.jpg" alt="製作活動の様子" width="640" height="480" loading="lazy">
+          <figcaption>月1回の作品制作。完成品はお持ち帰りいただけます</figcaption>
+        </figure>
+      </li>
+      <li>
+        <span class="t">14:30</span>
+        <div class="w">
+          <span class="wt">レクリエーション</span>
+        </div>
+        <figure class="tlpic">
+          <!-- ▼差し替え：本番の写真に差し替えてください（いまは仮の画像です） -->
+          <img src="tsusho-6-rec.jpg" alt="レクリエーションの様子" width="640" height="480" loading="lazy">
+          <figcaption>座って楽しめるレク（かるた・音楽・オリジナルゲームなど）</figcaption>
+        </figure>
+      </li>
+      <li>
+        <span class="t">15:15</span>
+        <div class="w">
+          <span class="wt">手作りおやつ</span>
+        </div>
+        <figure class="tlpic">
+          <!-- ▼差し替え：本番の写真に差し替えてください（いまは仮の画像です） -->
+          <img src="tsusho-8-oyatsu.jpg" alt="おやつの様子" width="640" height="480" loading="lazy">
+          <figcaption>手作りおやつ</figcaption>
+        </figure>
+      </li>
+      <li>
+        <span class="t">15:30</span>
+        <div class="w">
+          <span class="wt">帰宅準備・ご自宅へ送迎</span>
+        </div>
+      </li>
     </ol>
 
     <p class="day-note">早帰りもできます。<strong>12:00（昼食なし）</strong>と<strong>13:30（昼食あり）</strong>の2とおりです。</p>
+    <p class="day-note" style="margin-top:.8em"><span class="check">要確認</span>写真6枚と、それぞれの一言は仮のものです。実際の場面に差し替えてください。</p>
   </div>
 </section>
-
-<section class="section section--white" aria-labelledby="life-title">
-  <div class="wrap">
-    <h2 class="h2" id="life-title">こんなふうに、過ごします。</h2>
-    <p class="lede">運動のためのリハビリだけではありません。<strong>暮らしを支えるものが、ここにそろっています。</strong></p>
-    <ul class="pics">
-      <li><figure>
-        <img src="tsusho-1-sougei.jpg" alt="送迎車の様子" width="640" height="480" loading="lazy">
-        <figcaption>安心の送迎サービス。ご自宅までお迎えにうかがいます</figcaption>
-      </figure></li>
-      <li><figure>
-        <img src="tsusho-4-bath.jpg" alt="入浴設備の様子" width="640" height="480" loading="lazy">
-        <figcaption>入浴（ご希望の方）。手すりつきの浴槽です</figcaption>
-      </figure></li>
-      <li><figure>
-        <img src="tsusho-5-meal.jpg" alt="食事の様子" width="640" height="480" loading="lazy">
-        <figcaption>管理栄養士監修の献立。行事食もあります</figcaption>
-      </figure></li>
-      <li><figure>
-        <img src="tsusho-6-rec.jpg" alt="レクリエーションの様子" width="640" height="480" loading="lazy">
-        <figcaption>座って楽しめるレク（かるた・音楽・オリジナルゲームなど）</figcaption>
-      </figure></li>
-      <li><figure>
-        <img src="tsusho-7-work.jpg" alt="製作活動の様子" width="640" height="480" loading="lazy">
-        <figcaption>月1回の作品制作。完成品はお持ち帰りいただけます</figcaption>
-      </figure></li>
-      <li><figure>
-        <img src="tsusho-8-oyatsu.jpg" alt="おやつの様子" width="640" height="480" loading="lazy">
-        <figcaption>手作りおやつ</figcaption>
-      </figure></li>
-    </ul>
-
-    <p class="day-note" style="margin-top:1.8em"><span class="check">要確認</span>写真6枚と、それぞれの一言は仮のものです。実際の場面に差し替えてください。</p>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="step-title">
+<section class="section section--white" aria-labelledby="step-title">
   <div class="wrap">
     <h2 class="h2" id="step-title">ご利用までの流れ</h2>
     <p class="lede">ケアマネジャーの方、ご本人・ご家族、どちらからのご相談でも承ります。</p>
@@ -1577,7 +1648,7 @@ h3.deco-label{ font-size:1.05rem; }
   </div>
 </section>
 
-<section class="section section--white" aria-labelledby="after-title">
+<section class="section" aria-labelledby="after-title">
   <div class="wrap">
     <h2 class="h2" id="after-title">「帰る」を、「暮らし続ける」に変える。</h2>
     <p class="lede">ル・サンク湯澤は、<strong>介護老人保健施設（在宅強化型）</strong>・<strong>通所リハビリテーション</strong>・<strong>訪問リハビリステーション くるみ</strong>の3つを、同じ建物で運営しています。</p>
@@ -1613,7 +1684,7 @@ h3.deco-label{ font-size:1.05rem; }
   </div>
 </section>
 
-<section class="section" aria-labelledby="dl-title">
+<section class="section section--white" aria-labelledby="dl-title">
   <div class="wrap">
     <h2 class="h2" id="dl-title">資料を、ご覧いただけます。</h2>
     <p class="lede">入力なしで、そのままご覧いただけます。印刷してお使いください。</p>
@@ -1656,7 +1727,7 @@ h3.deco-label{ font-size:1.05rem; }
   </div>
 </section>
 
-<section class="section section--white" aria-labelledby="insta-title">
+<section class="section" aria-labelledby="insta-title">
   <div class="wrap">
     <h2 class="h2" id="insta-title">ふだんの様子は、Instagramで</h2>
     <p class="lede">体操やレクリエーション、製作活動、手作りおやつ。その日その日のできごとを、職員が投稿しています。</p>

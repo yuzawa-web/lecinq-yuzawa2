@@ -984,7 +984,10 @@ body > *:not(.bglogos){ position:relative; z-index:1; }
      すき間ではなくフッターの色が見えるので自然に見えます） */
 .footer{ padding-bottom: calc(44px + var(--callbar-h) + env(safe-area-inset-bottom, 0px)); }
 
-.callbar{
+/* 「body > 」を付けているのは、背景の浮かぶロゴのために書いた
+   「body > *」の指定に負けて、ただの帯に戻ってしまうのを防ぐためです。
+   これが無いと、バーが画面下に貼りつかず、ページのいちばん下に流れてしまいます。 */
+body > .callbar{
   position:fixed; left:0; right:0; bottom:0; z-index:50;
   background:var(--accent-dark);
   border-top:1px solid rgba(255,255,255,.18);
@@ -1035,7 +1038,7 @@ body > *:not(.bglogos){ position:relative; z-index:1; }
 
 /* =========================================================
    上の帯のメニュー
-   パソコン（1100px以上）：横に並べる
+   パソコン（1280px以上）：横に並べる
    それより細い画面　　　：「メニュー」ボタンを押すと下に開く
    ========================================================= */
 /* 上の帯を、下の内容より前に置きます（メニューが写真の裏に回らないように）。
@@ -1093,7 +1096,7 @@ body > .header{ position:relative; z-index:60; }
 .gnav__a--recruit{ border:1px solid var(--accent); margin-left:6px; }
 .gnav__a--recruit:hover{ background:var(--accent); color:#fff; }
 
-@media (max-width:1099px){
+@media (max-width:1279px){
   .gnav__toggle{ display:inline-flex; }
   .gnav__list{
     display:none;
@@ -1386,20 +1389,20 @@ h3.deco-label{ font-size:1.05rem; }
       </li>
       <li>
         <a class="gnav__a" id="btn-nav-roken" href="roken.html">
-          <span class="gnav__ttl">介護老人保健施設</span>
+          <span class="gnav__ttl">介護老人保健施設について</span>
           <small>入所・ショートステイ</small>
         </a>
       </li>
       <li>
         <a class="gnav__a" id="btn-nav-tsusho" href="tsusho.html">
-          <span class="gnav__ttl">通所リハビリテーション</span>
+          <span class="gnav__ttl">通所リハビリテーションについて</span>
           <small>半日からのご利用もできます</small>
         </a>
       </li>
       <li>
         <a class="gnav__a" id="btn-nav-homon" href="https://hakushinkai.jp/facilities/home_visit_rihabili/"
            target="_blank" rel="noopener">
-          <span class="gnav__ttl">訪問リハビリステーション くるみ<span class="gnav__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg></span></span>
+          <span class="gnav__ttl">訪問リハビリステーション くるみについて<span class="gnav__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg></span></span>
           <small>別のサイトが開きます</small>
         </a>
       </li>

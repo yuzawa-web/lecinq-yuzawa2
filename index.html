@@ -232,7 +232,9 @@ img{ max-width:100%; display:block; }
 .fv::before{
   content:""; position:absolute; inset:0; z-index:0;
   background-image: var(--fv-photo);
-  background-size:cover; background-position:50% 20%;
+  /* お顔が画面の上のほうに来るようにしています。
+     ノートパソコンなど、たての短い画面でも手書き文字がお顔にかからないようにするためです。 */
+  background-size:cover; background-position:50% 58%;
   background-color:#e8e4dc;   /* 写真が読めなかったときの色 */
 }
 
@@ -2035,19 +2037,31 @@ body.is-locked{ overflow:hidden; }
   setTimeout(sweep, 1200);
 })();
 
-/* 画面下のバーを、ページ最後の「まずは、ご相談ください。」が
-   見えているあいだだけ隠します。それ以外は何もしていません。
+/* 画面下のバーを、次の2か所が見えているあいだだけ隠します。
+   ・1枚目（同じ電話・見学ボタンがすぐ上に出ているため）
+   ・ページ最後の「まずは、ご相談ください。」
+   それ以外は何もしていません。
    この仕組みが使えない古い端末では、バーはずっと表示されたままになります
    （何も壊れません）。 */
 (function () {
   var bar = document.querySelector('.callbar');
+  if (!bar || !('IntersectionObserver' in window)) return;
+  var fv  = document.querySelector('.fv');
   var cta = document.querySelector('.cta');
-  if (!bar || !cta || !('IntersectionObserver' in window)) return;
-  new IntersectionObserver(function (entries) {
+  var state = { fv: false, cta: false };
+
+  function apply() { bar.classList.toggle('is-hidden', state.fv || state.cta); }
+
+  var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      bar.classList.toggle('is-hidden', entry.isIntersecting);
+      if (fv && entry.target === fv) { state.fv = entry.isIntersecting; }
+      else { state.cta = entry.isIntersecting; }
     });
-  }, { threshold: 0.2 }).observe(cta);
+    apply();
+  }, { threshold: 0.2 });
+
+  if (fv) io.observe(fv);
+  if (cta) io.observe(cta);
 })();
 
 /* ===== 4つの場面の小窓（ポップアップ）の開け閉め ===== */

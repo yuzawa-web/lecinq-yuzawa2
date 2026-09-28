@@ -225,8 +225,10 @@ img{ max-width:100%; display:block; }
 /* ▼差し替え①：写真のファイル名だけを、この2行で変えられます
    パソコン用（横2200px・約330KB）とスマホ用（横900px・約74KB）の2枚を用意しています。
    スマホで重い写真を読ませないための工夫です。 */
-.fv{ --fv-photo: url("fv-photo.jpg"); }
-@media (max-width:640px){ .fv{ --fv-photo: url("fv-photo-sp.jpg"); } }
+/* 2026-09-28：文字入りの画像に差し替え。
+   前の画像がブラウザに残って表示されないよう、ファイル名を変えています。 */
+.fv{ --fv-photo: url("fv-hero.jpg"); }
+@media (max-width:640px){ .fv{ --fv-photo: url("fv-hero-sp.jpg"); } }
 
 /* 写真そのもの。お顔が隠れないよう、少し上寄りに表示しています */
 .fv::before{

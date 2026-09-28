@@ -1435,9 +1435,14 @@ body > .fv{
 }
 .fv::before{
   position:static; display:block; width:100%; inset:auto;
-  aspect-ratio: 1366 / 768;          /* 写真をまるごと見せる（切り取らない） */
+  aspect-ratio: 1366 / 768;
+  /* 画面のたてに収まるよう、写真の高さに上限をつけています。
+     上限にあたったときは、空と足もとだけを切り、
+     お顔と手書きの文字は必ず残るようにしてあります。 */
+  max-height: calc(100svh - 300px);
+  min-height: 37vw;
   background-image: var(--fv-photo);
-  background-size:cover; background-position:center;
+  background-size:cover; background-position:50% 34%;
   background-color:#16332b;
 }
 .fv::after{ display:none; }
@@ -1446,7 +1451,7 @@ body > .fv{
 .fv .actions{ margin-bottom:0; }
 
 @media (max-width:640px){
-  .fv::before{ background-size:cover; background-position:center; }
+  .fv::before{ max-height:none; min-height:0; background-position:center; }
   .fv__inner{ padding:22px 20px 30px; }
 }
 </style>

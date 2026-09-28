@@ -1038,7 +1038,7 @@ body > .callbar{
 
 /* =========================================================
    上の帯のメニュー
-   パソコン（1280px以上）：横に並べる
+   パソコン（1360px以上）：横に並べる
    それより細い画面　　　：「メニュー」ボタンを押すと下に開く
    ========================================================= */
 /* 上の帯を、下の内容より前に置きます（メニューが写真の裏に回らないように）。
@@ -1096,7 +1096,7 @@ body > .header{ position:relative; z-index:60; }
 .gnav__a--recruit{ border:1px solid var(--accent); margin-left:6px; }
 .gnav__a--recruit:hover{ background:var(--accent); color:#fff; }
 
-@media (max-width:1279px){
+@media (max-width:1359px){
   .gnav__toggle{ display:inline-flex; }
   .gnav__list{
     display:none;
@@ -1376,6 +1376,35 @@ h3.deco-label{ font-size:1.05rem; }
   .timeline--pics li{ grid-template-columns:1fr; gap:.35em; }
   .tlpic{ grid-column:auto; max-width:100%; }
 }
+
+/* =========================================================
+   下層ページへのボタンを「押せる」と分かるように／施設名を大きく（2026-09-28）
+   ========================================================= */
+.card-link.card-link--in{ background:var(--accent); color:#fff; border:none; }
+.card-link.card-link--in .card-link__text small{ color:rgba(255,255,255,.85); }
+.card-link{
+  box-shadow:0 3px 10px rgba(31,39,35,.14);
+  transition: background-color .18s ease, transform .14s ease, box-shadow .18s ease;
+}
+.card-link:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(31,39,35,.22); }
+.card-link:active{ transform:translateY(0); box-shadow:0 2px 6px rgba(31,39,35,.18); }
+.card-link__arrow{
+  display:inline-flex; align-items:center; justify-content:center; flex:none;
+  width:34px; height:34px; border-radius:50%;
+  background:rgba(255,255,255,.18); color:#fff;
+}
+.card-link__arrow svg{ width:18px; height:18px; }
+.card-link .card-link__text{ flex:1 1 auto; }
+.card-link .card-link__text strong{ font-size:1.02rem; }
+
+.header .facility{ font-size:1.3rem; letter-spacing:.06em; color:var(--accent-dark); }
+.header .group{ font-size:.82rem; }
+@media (max-width:1359px){ .header .facility{ font-size:1.2rem; } }
+@media (max-width:520px){
+  .header .facility{ font-size:1.02rem; }
+  .header .group{ font-size:.7rem; }
+}
+@media (max-width:360px){ .header .facility{ font-size:.95rem; } }
 </style>
 </head>
 

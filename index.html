@@ -353,8 +353,9 @@ img{ max-width:100%; display:block; }
 .bglogos span{
   position:absolute; left:var(--x); top:var(--y);
   width:var(--s); height:var(--s);
-  background:url("logo-mark.png") no-repeat center / contain;
-  opacity:.10;
+  /* 2026-09-28：背景に浮かぶマークを、法人のマークに差し替えました */
+  background:url("logo-header.png") no-repeat center / contain;
+  opacity:.14;
   animation: float var(--d) ease-in-out var(--dl) infinite alternate;
 }
 @keyframes float{
@@ -1454,6 +1455,38 @@ body > .fv{
   .fv::before{ max-height:none; min-height:0; background-position:center; }
   .fv__inner{ padding:22px 20px 30px; }
 }
+
+/* =========================================================
+   1枚目のサービス名を、それぞれのページへのリンクにする（2026-09-28）
+   ========================================================= */
+.services li{ padding:0; border:none; background:none; }
+.services li a{
+  display:inline-flex; align-items:center; gap:.35em;
+  font-size:.86rem; font-weight:700; color:#fff; text-decoration:none;
+  border:1px solid rgba(255,255,255,.62); border-radius:999px;
+  padding:7px 16px; min-height:36px;
+  background:rgba(255,255,255,.16); white-space:nowrap;
+  backdrop-filter:blur(2px);
+  transition: background-color .18s ease, color .18s ease, transform .14s ease;
+}
+.services li a:hover{ background:#fff; color:var(--accent-dark); transform:translateY(-2px); }
+.services li a:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+.services__mark{ display:inline-flex; width:12px; height:12px; }
+.services__mark svg{ width:100%; height:100%; }
+@media (max-width:480px){
+  .services li a{ font-size:.82rem; padding:7px 13px; }
+}
+
+/* =========================================================
+   上の帯に、法人のマークを置く（2026-09-28）
+   ========================================================= */
+.header__id{ align-items:center; }
+.header__logo{
+  width:auto; height:34px; flex:none; margin-right:.2em; display:block;
+}
+@media (max-width:1359px){ .header__logo{ height:31px; } }
+@media (max-width:520px){ .header__logo{ height:27px; margin-right:0; } }
+@media (max-width:360px){ .header__logo{ height:24px; } }
 </style>
 </head>
 
@@ -1476,6 +1509,8 @@ body > .fv{
 <!-- ===== 上の帯 ===== -->
 <header class="header">
   <div class="header__id">
+    <!-- ▼医療法人博滇会のマーク -->
+    <img class="header__logo" src="logo-header.png" alt="医療法人博滇会" width="240" height="160">
     <span class="facility">ル・サンク湯澤</span>
     <span class="group">医療法人博滇会グループ</span>
   </div>
@@ -1549,10 +1584,13 @@ body > .fv{
     <!-- 宣言の一行「暮らしをまんなかに考え、そこに少しのプラスを。」は削除しました（2026-08-21） -->
 
     <!-- サービスの正式名称は確定済み（2026-08-18） -->
+    <!-- サービス名の3つの札は、それぞれのページへのリンクです。
+         btn-fv-… の印は、押された回数を数えるために使っています（消さないでください）。 -->
     <ul class="services">
-      <li>介護老人保健施設</li>
-      <li>通所リハビリテーション</li>
-      <li>訪問リハビリステーション くるみ</li>
+      <li><a id="btn-fv-roken" href="roken.html">介護老人保健施設</a></li>
+      <li><a id="btn-fv-tsusho" href="tsusho.html">通所リハビリテーション</a></li>
+      <li><a id="btn-fv-homon" href="https://hakushinkai.jp/facilities/home_visit_rihabili/"
+             target="_blank" rel="noopener">訪問リハビリステーション くるみ<span class="services__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg></span></a></li>
     </ul>
 
     <div class="actions">

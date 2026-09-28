@@ -349,8 +349,9 @@ img{ max-width:100%; display:block; }
 .bglogos span{
   position:absolute; left:var(--x); top:var(--y);
   width:var(--s); height:var(--s);
-  background:url("logo-mark.png") no-repeat center / contain;
-  opacity:.10;
+  /* 2026-09-28：背景に浮かぶマークを、法人のマークに差し替えました */
+  background:url("logo-header.png") no-repeat center / contain;
+  opacity:.14;
   animation: float var(--d) ease-in-out var(--dl) infinite alternate;
 }
 @keyframes float{
@@ -1380,6 +1381,17 @@ h3.deco-label{ font-size:1.05rem; }
   .header .group{ font-size:.7rem; }
 }
 @media (max-width:360px){ .header .facility{ font-size:.95rem; } }
+
+/* =========================================================
+   上の帯に、法人のマークを置く（2026-09-28）
+   ========================================================= */
+.header__id{ align-items:center; }
+.header__logo{
+  width:auto; height:34px; flex:none; margin-right:.2em; display:block;
+}
+@media (max-width:1359px){ .header__logo{ height:31px; } }
+@media (max-width:520px){ .header__logo{ height:27px; margin-right:0; } }
+@media (max-width:360px){ .header__logo{ height:24px; } }
 </style>
 </head>
 
@@ -1402,6 +1414,8 @@ h3.deco-label{ font-size:1.05rem; }
 <!-- ===== 上の帯 ===== -->
 <header class="header">
   <div class="header__id">
+    <!-- ▼医療法人博滇会のマーク -->
+    <img class="header__logo" src="logo-header.png" alt="医療法人博滇会" width="240" height="160">
     <a class="facility" href="index.html">ル・サンク湯澤</a>
     <span class="group">医療法人博滇会グループ</span>
   </div>

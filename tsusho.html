@@ -354,9 +354,10 @@ img{ max-width:100%; display:block; }
   opacity:.14;
   animation: float var(--d) ease-in-out var(--dl) infinite alternate;
 }
+/* 2026-09-28：もう少し動きが見えるよう、ふり幅を大きくしました（速さは下の --d で調整） */
 @keyframes float{
-  from{ transform:translate3d(0,0,0) rotate(0deg); }
-  to  { transform:translate3d(12px,-26px,0) rotate(9deg); }
+  from{ transform:translate3d(-10px,14px,0) rotate(-6deg); }
+  to  { transform:translate3d(18px,-38px,0) rotate(12deg); }
 }
 /* 中身は必ずロゴより手前に */
 body > *:not(.bglogos){ position:relative; z-index:1; }
@@ -1423,16 +1424,16 @@ h3.deco-label{ font-size:1.05rem; }
 <body>
 <!-- 背景に浮かぶ小さな法人ロゴ（飾り）。読み上げの対象からは外しています -->
 <div class="bglogos" aria-hidden="true">
-  <span style="--x:4%;--y:8%;--s:52px;--d:30s;--dl:0s"></span>
-  <span style="--x:88%;--y:14%;--s:38px;--d:26s;--dl:-4s"></span>
-  <span style="--x:16%;--y:30%;--s:30px;--d:34s;--dl:-9s"></span>
-  <span style="--x:72%;--y:36%;--s:56px;--d:28s;--dl:-2s"></span>
-  <span style="--x:8%;--y:56%;--s:42px;--d:32s;--dl:-14s"></span>
-  <span style="--x:92%;--y:62%;--s:32px;--d:24s;--dl:-6s"></span>
-  <span style="--x:30%;--y:74%;--s:36px;--d:36s;--dl:-11s"></span>
-  <span style="--x:64%;--y:84%;--s:48px;--d:27s;--dl:-3s"></span>
-  <span style="--x:46%;--y:20%;--s:26px;--d:31s;--dl:-17s"></span>
-  <span style="--x:20%;--y:92%;--s:30px;--d:25s;--dl:-8s"></span>
+  <span style="--x:4%;--y:8%;--s:52px;--d:13s;--dl:0s"></span>
+  <span style="--x:88%;--y:14%;--s:38px;--d:11s;--dl:-4s"></span>
+  <span style="--x:16%;--y:30%;--s:30px;--d:15s;--dl:-9s"></span>
+  <span style="--x:72%;--y:36%;--s:56px;--d:12s;--dl:-2s"></span>
+  <span style="--x:8%;--y:56%;--s:42px;--d:14s;--dl:-14s"></span>
+  <span style="--x:92%;--y:62%;--s:32px;--d:10s;--dl:-6s"></span>
+  <span style="--x:30%;--y:74%;--s:36px;--d:16s;--dl:-11s"></span>
+  <span style="--x:64%;--y:84%;--s:48px;--d:11.5s;--dl:-3s"></span>
+  <span style="--x:46%;--y:20%;--s:26px;--d:13.5s;--dl:-17s"></span>
+  <span style="--x:20%;--y:92%;--s:30px;--d:10.5s;--dl:-8s"></span>
 </div>
 
 
@@ -1873,7 +1874,7 @@ h3.deco-label{ font-size:1.05rem; }
   <div class="wrap">
     <a class="orgcard" id="btn-org" href="https://hakushinkai.jp/" target="_blank" rel="noopener">
       <span class="orgcard__logo">
-        <img src="logo-mark.png" alt="" width="256" height="256" loading="lazy">
+        <img src="logo-header.png" alt="" width="240" height="160" loading="lazy">
       </span>
       <span class="orgcard__text">
         <strong>医療法人 博滇会</strong>

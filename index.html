@@ -1488,6 +1488,32 @@ body > .fv{
 @media (max-width:1359px){ .header__logo{ height:31px; } }
 @media (max-width:520px){ .header__logo{ height:27px; margin-right:0; } }
 @media (max-width:360px){ .header__logo{ height:24px; } }
+
+/* =========================================================
+   節の中の小見出し（2026-09-28 作り直し）
+   まるい印つきの札にして、見出しとの関係を分かりやすくしました。
+   ========================================================= */
+.tag-h{
+  display:inline-flex; align-items:center; gap:.6em;
+  background:var(--leaf-soft); color:var(--accent-dark);
+  border:1px solid rgba(43,97,81,.18);
+  border-radius:999px; padding:8px 22px 8px 9px;
+  font-size:1.02rem; font-weight:700; line-height:1.5; letter-spacing:.01em;
+  margin:0 0 1.3em;
+  box-shadow:0 2px 8px rgba(31,39,35,.05);
+}
+.tag-h__ico{
+  display:inline-flex; align-items:center; justify-content:center; flex:none;
+  width:30px; height:30px; border-radius:50%;
+  background:var(--white); color:var(--accent);
+}
+.tag-h__ico svg{ width:17px; height:17px; }
+.tag-h--gap{ margin-top:3.4em; }
+@media (max-width:560px){
+  .tag-h{ font-size:.95rem; padding:7px 16px 7px 8px; gap:.5em; }
+  .tag-h__ico{ width:27px; height:27px; }
+  .tag-h__ico svg{ width:15px; height:15px; }
+}
 </style>
 </head>
 
@@ -1878,7 +1904,7 @@ body > .fv{
   <div class="wrap">
     <h2 class="h2" id="kids-title"><span>ル・サンク湯澤の、</span><span>ふだんの風景。</span></h2>
 
-    <h3 class="deco-label"><span>保育園のこどもたちと、いっしょに</span></h3>
+    <h3 class="tag-h"><span class="tag-h__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5S3.8 15.2 3.8 9.9A4.1 4.1 0 0 1 12 7.6a4.1 4.1 0 0 1 8.2 2.3c0 5.3-8.2 10.6-8.2 10.6z"/></svg></span><span class="tag-h__txt">保育園のこどもたちと、いっしょに</span></h3>
     <p class="lede">ル・サンク湯澤の中には、<strong>もみじナースリー</strong>という保育園があります。同じ建物のこどもたちと交流する機会を、<strong>定期的に</strong>設けています。子どもたちとの交流を通して、日々の楽しみや心の活性化につながる時間を大切にしています。</p>
 
     <ul class="photos">
@@ -1902,7 +1928,7 @@ body > .fv{
       </li>
     </ul>
 
-    <h3 class="deco-label deco-label--gap"><span>歩行トレーニングロボットも、あります</span></h3>
+    <h3 class="tag-h tag-h--gap"><span class="tag-h__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12.5" cy="4.3" r="2.1"/><path d="M12.5 8v5.4"/><path d="M9.2 21l3.3-5.2 3.3 5.2"/><path d="M8.4 10.7l4.1-1.4 4.1 1.4"/></svg></span><span class="tag-h__txt">歩行トレーニングロボットも、あります</span></h3>
     <p class="lede">「もう一度、自分の足で歩きたい」。その気持ちにこたえるために、<strong>歩行トレーニングロボット</strong>をはじめとしたリハビリの機器をそろえています。理学療法士・作業療法士・言語聴覚士が、その方の状態に合わせて使い方を考えます。</p>
 
     <ul class="photos">
@@ -1950,7 +1976,7 @@ body > .fv{
     <h2 class="h2" id="insta-title">ふだんの様子は、Instagramで</h2>
     <p class="lede">行事の様子や日々のできごとを、職員が投稿しています。入所と通所リハビリで、それぞれ別のアカウントがあります。</p>
 
-    <h3 class="deco-label"><span>介護老人保健施設（入所）のInstagram</span></h3>
+    <h3 class="tag-h"><span class="tag-h__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></span><span class="tag-h__txt">介護老人保健施設（入所）のInstagram</span></h3>
 
     <!--
       ▼差し替え⑦：Instagramの埋め込みコード（介護老人保健施設）

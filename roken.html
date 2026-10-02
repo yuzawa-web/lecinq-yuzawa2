@@ -1393,6 +1393,283 @@ h3.deco-label{ font-size:1.05rem; }
 @media (max-width:1359px){ .header__logo{ height:31px; } }
 @media (max-width:520px){ .header__logo{ height:27px; margin-right:0; } }
 @media (max-width:360px){ .header__logo{ height:24px; } }
+
+
+/* =========================================================
+   2026-10-01　デザインの刷新（構成はそのままです）
+   ・地の色を、クリームから「ほぼ白」に
+   ・見出しの黄色いマーカーをやめ、小さな緑の印に
+   ・節の境目の「波」をやめ、まっすぐな境目に
+   ・写真と箱の角をやわらかく、影をうすく
+   ・余白をひろげ、文字をすこし小さく、行間をひろく
+   もとのデザインに戻したいときは、このかたまりごと消してください。
+   ========================================================= */
+:root{
+  --bg:          #fbfaf6;   /* ほぼ白のクリーム */
+  --line:        #e7e3d9;   /* うすい境目の線 */
+  --accent-pale: #eef3f0;
+  --mist:        #f4f7f3;   /* ほんのり緑がかった、うすい地の色 */
+  --shadow:      0 6px 22px rgba(31,39,35,.06);
+  --maxw:        1080px;
+}
+
+body{ line-height:1.95; letter-spacing:.012em; }
+
+/* ---- 節の余白をひろげる ---- */
+.section{ padding:88px 24px; }
+.cta{ padding:84px 24px; }
+@media (max-width:760px){
+  .section{ padding:56px 20px; }
+  .cta{ padding:56px 20px; }
+}
+
+/* ---- 節の境目の「波」をやめる ---- */
+.section--white::before,
+.section--white::after,
+.cta::before{ content:none; display:none; }
+.section--white{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+
+/* ---- 見出し ---- */
+.h2, .h2 span{ background-image:none; }
+.sub-h{ background-image:none; }
+.h2{
+  font-size: clamp(1.45rem, 4.2vw, 2.05rem);
+  font-weight:700; line-height:1.62; letter-spacing:.04em;
+  color:var(--accent-dark);
+  margin:0 0 .55em; text-align:center;
+}
+/* 見出しの上に、小さな緑の線 */
+.section .h2::before, .cta .h2::before{
+  content:""; display:block; width:36px; height:3px; border-radius:2px;
+  background:var(--leaf); margin:0 auto 1.1em;
+}
+.cta .h2::before{ background:rgba(255,255,255,.75); }
+.lede{ margin-bottom:2.6em; font-size:.97rem; line-height:2.05; }
+/* 見出しのすぐ下の一文だけ、まんなか寄せにします */
+.h2 + .lede{ text-align:center; max-width:780px; margin-left:auto; margin-right:auto; }
+.sub-h{
+  font-size: clamp(1.2rem, 3.4vw, 1.5rem);
+  letter-spacing:.04em; color:var(--accent-dark);
+  text-align:center; margin:0 0 .5em;
+}
+.sub-h::before{
+  content:""; display:block; width:28px; height:2px; border-radius:2px;
+  background:var(--leaf); margin:0 auto 1em;
+}
+.sub-h + .sub-lede{ text-align:center; max-width:760px; margin-left:auto; margin-right:auto; }
+.flow-note + .sub-h{ margin-top:3.6em; }
+
+/* ---- 写真 ---- */
+.ph-img, .photos img, .flow__photo img, .pop__photo img{
+  border-radius:14px; box-shadow:var(--shadow); background:#eceae3;
+}
+/* 職員の写真を、まるから角丸の四角へ */
+.staff .ph-round{
+  aspect-ratio:4/3; border-radius:14px; max-width:none; box-shadow:var(--shadow);
+}
+.staff .role{
+  display:inline-block; margin-bottom:.35em;
+  font-size:.74rem; font-weight:700; letter-spacing:.08em;
+  color:var(--accent); background:var(--mist);
+  border-radius:999px; padding:3px 12px;
+}
+.staff figure{ text-align:center; }
+.staff .voice{ font-size:.94rem; line-height:1.9; color:var(--ink-soft); }
+.staff{ gap:28px; }
+
+/* ---- 箱（カード） ---- */
+.card{
+  background:var(--white); border:1px solid var(--line); border-radius:18px;
+  padding:0 0 26px; overflow:hidden; box-shadow:var(--shadow);
+}
+.section--white .card{ background:var(--white); }
+.card > *:not(.card__photo){ margin-left:24px; margin-right:24px; }
+.card > h3{ margin-top:22px; }
+.card h3{ font-size:1.12rem; line-height:1.6; color:var(--accent-dark); }
+.card p{ font-size:.93rem; line-height:1.95; }
+.cards{ gap:22px; }
+
+/* カードのいちばん上の写真（2026-10-01 追加） */
+.card__photo{ margin:0; display:block; }
+.card__photo img{
+  width:100%; height:auto; aspect-ratio:3/2; object-fit:cover;
+  display:block; border-radius:0; background:#eceae3;
+}
+
+/* ---- 小さな札 ---- */
+.tags li{
+  background:var(--mist); border-color:rgba(43,97,81,.16); color:var(--accent-dark);
+  font-weight:700; font-size:.8rem;
+}
+.tags{ justify-content:center; margin-bottom:2.4em; }
+.flow__label{ background:var(--mist); }
+.badge--soft{ background:var(--mist); }
+
+/* ---- ボタン ---- */
+.btn{ border-radius:12px; font-size:1rem; min-height:58px; letter-spacing:.04em; }
+.card-link{ border-radius:12px; }
+.insta-link{ border-radius:12px; border-width:1.5px; }
+.dl-item{ border-radius:16px; background:var(--white); box-shadow:var(--shadow); }
+.dl-item:hover{ background:var(--mist); }
+/* 資料のかたまりを、まんなかに */
+.dl-list{ margin-left:auto; margin-right:auto; }
+.dl-note{ text-align:center; }
+.more{ border-radius:12px; }
+
+/* ---- 「4つの場面」の札 ---- */
+.stages--4 .stage{ border-radius:18px; box-shadow:var(--shadow); }
+.stages--4 .stage__name{ letter-spacing:.03em; }
+.stages__hint{ text-align:center; }
+
+/* ---- 文章まわりのうすい箱 ---- */
+.group-note, .stages__back, .card__strong, .more__note{ border-radius:14px; }
+.stages__back{ background:var(--mist); }
+.card__strong{ background:var(--mist); }
+.more__note{ background:var(--mist); }
+
+/* ---- 上の帯 ---- */
+.header{ background:rgba(255,255,255,.94); border-bottom:1px solid var(--line); padding:14px 24px; }
+.gnav__cta{ border-radius:10px; }
+
+/* ---- 背景に浮かぶロゴを、ぐっと控えめに ---- */
+.bglogos span{ opacity:.055; }
+.bg-logo{ opacity:.07; }
+
+/* ---- 「ふだんの風景」の小見出し ---- */
+.tag-h{ background:var(--mist); border-color:rgba(43,97,81,.14); box-shadow:none; }
+
+/* ---- 1枚目のすぐ下の帯 ---- */
+.fv__inner{ padding-top:30px; padding-bottom:36px; }
+
+/* ---- 資料ダウンロード・地図 ---- */
+.footer__map iframe{ border-radius:14px; }
+.insta-embed{ border-radius:14px; border-color:var(--line); }
+.ph{ border-radius:14px; border-color:var(--line); }
+
+/* ---- 下層ページの見出し帯 ---- */
+.pagehead h1{ letter-spacing:.04em; }
+
+/* ---- 小窓 ---- */
+.pop__box{ border-radius:18px; }
+
+@media (max-width:760px){
+  .h2{ line-height:1.55; }
+  .h2 + .lede{ text-align:left; }
+  .sub-h + .sub-lede{ text-align:left; }
+  .tags{ justify-content:flex-start; }
+  .dl-note{ text-align:left; }
+  .card > *:not(.card__photo){ margin-left:20px; margin-right:20px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   2026-10-01（2）名刺の三角の飾り
+   博滇会カラー一覧表の色を使っています。
+     稲1 #d6c9ae ／ 稲3 #eae4d6 ／ 稲5 #f7f5ee ／ 深藍1 #1e4068
+   ========================================================= */
+:root{
+  --ine1:   #d6c9ae;   /* 暮らし（稲）1 */
+  --ine3:   #eae4d6;   /* 暮らし（稲）3 */
+  --ine5:   #f7f5ee;   /* 暮らし（稲）5 */
+  --navy:   #1e4068;   /* 滇（深藍）1 */
+  --navy-d: #16304f;   /* 深藍1をさらに濃く */
+}
+
+/* ---------------------------------------------------------
+   三角の飾り（名刺と同じかたち）
+   正方形の箱に斜めの境目を描いて、直角二等辺三角形にしています。
+   --------------------------------------------------------- */
+.tri-deco{
+  position:absolute; left:50%; transform:translateX(-50%);
+  top:0; bottom:0; width:100vw; max-width:none;
+  z-index:-1; pointer-events:none; overflow:hidden;
+}
+.tri-deco::before{
+  content:""; position:absolute; right:0; bottom:0;
+  height:100%; aspect-ratio:1 / 1;
+  background:linear-gradient(to bottom right, transparent 49.9%, var(--tri-1, var(--ine1)) 50%);
+}
+
+/* ---------------------------------------------------------
+   1枚目のすぐ下の帯
+   濃い緑のベタ塗りをやめ、うすい地＋三角の飾りにしました。
+   そのぶん、緑はボタンの色として残しています。
+   --------------------------------------------------------- */
+body > .fv{ background:var(--ine5); }
+.fv__inner{ padding-top:52px; padding-bottom:56px; }
+
+.fv .services li a{
+  color:var(--accent-dark); background:#fff;
+  border:1px solid rgba(43,97,81,.28);
+  backdrop-filter:none;
+  box-shadow:0 1px 4px rgba(31,39,35,.05);
+}
+.fv .services li a:hover{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.fv .services li a:focus-visible{ outline:3px solid var(--accent-dark); }
+
+.fv .btn--tel{ background:var(--accent); color:#fff; }
+.fv .btn--tel:hover{ background:var(--accent-dark); }
+.fv .btn--visit{ background:#fff; color:var(--accent); border:2px solid var(--accent); }
+.fv .btn--visit:hover{ background:var(--accent); color:#fff; }
+
+/* ---------------------------------------------------------
+   緑の面（下層ページの見出し帯・「まずは、ご相談ください。」）
+   三角を背景に散らしています。大きさ・向き・うすさは
+   このファイル（build_deco.py）の SCATTER の表で変えられます。
+   --------------------------------------------------------- */
+.pagehead{ position:relative; overflow:hidden; }
+.pagehead > .wrap{ position:relative; z-index:1; }
+.cta{ position:relative; overflow:hidden; }
+.cta > .wrap{ position:relative; z-index:1; }
+
+.pagehead .tri-deco,
+.cta .tri-deco{
+  z-index:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 480' preserveAspectRatio='xMidYMid slice'><path d='M-30 20 l170 0 l-170 170 z' fill='white' fill-opacity='0.075' transform='rotate(20 -30 20)'/><path d='M120 300 l110 0 l-110 110 z' fill='white' fill-opacity='0.055' transform='rotate(200 120 300)'/><path d='M300 40 l90 0 l-90 90 z' fill='white' fill-opacity='0.05' transform='rotate(120 300 40)'/><path d='M250 430 l130 0 l-130 130 z' fill='white' fill-opacity='0.06' transform='rotate(290 250 430)'/><path d='M560 120 l60 0 l-60 60 z' fill='white' fill-opacity='0.045' transform='rotate(35 560 120)'/><path d='M700 400 l95 0 l-95 95 z' fill='white' fill-opacity='0.05' transform='rotate(160 700 400)'/><path d='M980 60 l80 0 l-80 80 z' fill='white' fill-opacity='0.05' transform='rotate(250 980 60)'/><path d='M1150 280 l150 0 l-150 150 z' fill='white' fill-opacity='0.065' transform='rotate(15 1150 280)'/><path d='M1330 10 l190 0 l-190 190 z' fill='white' fill-opacity='0.08' transform='rotate(130 1330 10)'/><path d='M1400 390 l110 0 l-110 110 z' fill='white' fill-opacity='0.06' transform='rotate(210 1400 390)'/><path d='M430 230 l45 0 l-45 45 z' fill='white' fill-opacity='0.04' transform='rotate(70 430 230)'/><path d='M880 230 l55 0 l-55 55 z' fill='white' fill-opacity='0.04' transform='rotate(300 880 230)'/></svg>");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:cover;
+}
+/* 散らした三角にするので、角の大きな三角は出しません */
+.pagehead .tri-deco::before,
+.cta .tri-deco::before{ content:none; }
+
+/* スマホは画面がたてに長いので、たて向きの散らし方に差し替えます */
+@media (max-width:760px){
+  .pagehead .tri-deco,
+  .cta .tri-deco{
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 900' preserveAspectRatio='xMidYMid slice'><path d='M-20 60 l120 0 l-120 120 z' fill='white' fill-opacity='0.075' transform='rotate(20 -20 60)'/><path d='M380 160 l150 0 l-150 150 z' fill='white' fill-opacity='0.07' transform='rotate(130 380 160)'/><path d='M60 300 l80 0 l-80 80 z' fill='white' fill-opacity='0.05' transform='rotate(250 60 300)'/><path d='M430 420 l110 0 l-110 110 z' fill='white' fill-opacity='0.06' transform='rotate(200 430 420)'/><path d='M-10 520 l140 0 l-140 140 z' fill='white' fill-opacity='0.06' transform='rotate(300 -10 520)'/><path d='M250 680 l90 0 l-90 90 z' fill='white' fill-opacity='0.05' transform='rotate(40 250 680)'/><path d='M440 820 l130 0 l-130 130 z' fill='white' fill-opacity='0.065' transform='rotate(160 440 820)'/><path d='M120 860 l70 0 l-70 70 z' fill='white' fill-opacity='0.05' transform='rotate(230 120 860)'/><path d='M230 420 l45 0 l-45 45 z' fill='white' fill-opacity='0.04' transform='rotate(80 230 420)'/><path d='M60 150 l50 0 l-50 50 z' fill='white' fill-opacity='0.04' transform='rotate(310 60 150)'/></svg>");
+  }
+}
+
+/* ---------------------------------------------------------
+   フッター
+   黒をやめて、博滇会の「滇（深藍）」にしました。
+   --------------------------------------------------------- */
+.footer{ background:var(--navy); color:#cdd8e4; }
+.footer a{ color:#cdd8e4; }
+.footer .name-services{ color:#cdd8e4; }
+.access dt{ color:#9db0c6; }
+.access dd{ color:#e9f0f7; }
+.access .tel-svc{ color:#9db0c6; }
+.footer__map iframe{ background:#17334f; }
+.footer__links a{ color:#cdd8e4; }
+.orgcard__text small{ color:#cdd8e4; }
+.map-link:hover{ color:var(--navy) !important; }
+
+@media (prefers-reduced-motion: no-preference){
+  /* 飾りは動かしません（読みやすさのため） */
+}
+
 </style>
 </head>
 
@@ -1486,6 +1763,18 @@ h3.deco-label{ font-size:1.05rem; }
 
 <!-- ===== ページの見出し ===== -->
 <div class="pagehead">
+    <!-- 名刺と同じ、三角の飾り（見た目だけのものです） -->
+    <div class="tri-deco" aria-hidden="true"></div>
+
+
+
+
+
+
+
+
+
+
   <div class="wrap">
     <!-- 施設のトップへ戻る案内。btn-back-head の印は消さないでください -->
     <p class="backlink">
@@ -1756,6 +2045,18 @@ h3.deco-label{ font-size:1.05rem; }
 
 <!-- ===== 最後のご相談 ===== -->
 <section class="cta" aria-labelledby="cta-title">
+    <!-- 名刺と同じ、三角の飾り（見た目だけのものです） -->
+    <div class="tri-deco" aria-hidden="true"></div>
+
+
+
+
+
+
+
+
+
+
   <div class="wrap">
     <h2 class="h2" id="cta-title"><span>まずは、</span><span>ご相談ください。</span></h2>
     <p class="lede">ご本人の状態がわからない段階でも大丈夫です。ご家族だけのご見学もできます。</p>
@@ -1773,6 +2074,10 @@ h3.deco-label{ font-size:1.05rem; }
 
 <!-- ===== フッター（所在地・アクセス・地図） ===== -->
 <footer class="footer">
+
+
+
+
   <div class="wrap footer__grid">
 
     <div class="footer__info">

@@ -1703,6 +1703,22 @@ body > .fv{ background:var(--ine5); }
 .header__home{ display:block; line-height:0; border-radius:6px; }
 .header__home:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:3px; }
 
+
+
+/* =========================================================
+   2026-10-06　グループサイトのカード
+   にしあすま保育園のページと同じ言い方・同じ見た目にそろえました。
+   ========================================================= */
+.orgcard{ gap:16px; padding:16px 20px; border-radius:14px; }
+.orgcard__logo{ width:62px; height:62px; border-radius:14px; padding:9px; }
+.orgcard__text{ gap:.35em; }
+.orgcard__text strong{ font-size:1rem; letter-spacing:.02em; }
+.orgcard__text small{ font-size:.86rem; line-height:1.75; }
+@media (max-width:520px){
+  .orgcard{ gap:13px; padding:14px 16px; }
+  .orgcard__logo{ width:52px; height:52px; border-radius:12px; padding:7px; }
+}
+
 </style>
 </head>
 
@@ -2157,12 +2173,8 @@ body > .fv{ background:var(--ine5); }
         <img src="logo-header.png" alt="" width="240" height="160" loading="lazy">
       </span>
       <span class="orgcard__text">
-        <strong>医療法人 博滇会</strong>
-        <small>ル・サンク湯澤は医療法人 博滇会の施設です。法人サイトはこちら</small>
-      </span>
-      <span class="orgcard__arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-             stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg>
+        <strong>博滇会グループ</strong>
+        <small>ル・サンク湯澤は「博滇会グループ」の施設です。グループサイトはこちらへ。</small>
       </span>
     </a>
   </div>

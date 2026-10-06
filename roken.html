@@ -1670,6 +1670,39 @@ body > .fv{ background:var(--ine5); }
   /* 飾りは動かしません（読みやすさのため） */
 }
 
+
+
+
+/* =========================================================
+   2026-10-06　上の帯のロゴ
+   マーク・施設名・サービス名が1枚になったロゴに差し替えました。
+   大きさは、画面の幅ごとに下の height で決めています。
+   ========================================================= */
+.header__logo--lecinq{
+  height:52px; width:auto; margin-right:.1em; display:block;
+}
+@media (max-width:1359px){ .header__logo--lecinq{ height:48px; } }
+@media (max-width:860px) { .header__logo--lecinq{ height:42px; } }
+@media (max-width:520px) { .header__logo--lecinq{ height:37px; margin-right:0; } }
+@media (max-width:360px) { .header__logo--lecinq{ height:32px; } }
+
+/* ロゴの横に添える「医療法人博滇会グループ」 */
+.header__id{ align-items:center; }
+.header .group{
+  font-size:.76rem; color:var(--ink-soft); letter-spacing:.06em;
+  line-height:1.5; align-self:center;
+}
+@media (max-width:860px){ .header .group{ display:none; } }
+
+/* スマホでは上の帯がたてに積むので、ロゴを左にそろえます */
+@media (max-width:520px){
+  .header__id{ align-items:flex-start; }
+}
+
+/* 下層ページでは、ロゴがトップページへのリンクになっています */
+.header__home{ display:block; line-height:0; border-radius:6px; }
+.header__home:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:3px; }
+
 </style>
 </head>
 
@@ -1692,9 +1725,13 @@ body > .fv{ background:var(--ine5); }
 <!-- ===== 上の帯 ===== -->
 <header class="header">
   <div class="header__id">
-    <!-- ▼医療法人博滇会のマーク -->
-    <img class="header__logo" src="logo-header.png" alt="医療法人博滇会" width="240" height="160">
-    <a class="facility" href="index.html">ル・サンク湯澤</a>
+    <!-- ▼ル・サンク湯澤のロゴ（2026-10-06 差し替え）
+         マークと施設名、サービス名までが1枚の画像に入っています。
+         前のものに戻すときは、この画像を次の2行に戻してください。
+           <img class="header__logo" src="logo-header.png" alt="医療法人博滇会" width="240" height="160">
+           ル・サンク湯澤（文字） -->
+    <a class="header__home" href="index.html"><img class="header__logo header__logo--lecinq" src="logo-lecinq.png"
+         alt="ル・サンク湯澤　介護老人保健施設／リハビリ特化型デイ" width="680" height="172"></a>
     <span class="group">医療法人博滇会グループ</span>
   </div>
   <!-- ▼上の帯のメニュー

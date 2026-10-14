@@ -1914,6 +1914,82 @@ body > .fv{ background:var(--ine5); }
   .orgcard__logo{ width:52px; height:52px; border-radius:12px; padding:7px; }
 }
 
+
+/* =========================================================
+   2026-10-14　小窓の番号を、札の01〜04にそろえました
+   ========================================================= */
+.pop__head .flow__no{
+  width:38px; height:38px;
+  font-size:.86rem; letter-spacing:.03em;
+}
+
+
+/* =========================================================
+   2026-10-14　「3つのかたちで、お手伝いします」の前の区切り
+   ========================================================= */
+.section--flow .sub-h{
+  margin-top:5em;
+  padding-top:4em;
+  border-top:1px solid var(--line);
+}
+
+/* =========================================================
+   2026-10-14　「ポイント」の札つきの囲み
+   ========================================================= */
+.point-note{
+  position:relative;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:30px 26px 24px;
+  margin:2.6em 0 2.4em;
+  font-size:.95rem; line-height:1.95; color:var(--ink-soft);
+}
+.point-note__tag{
+  position:absolute; top:-15px; left:24px;
+  display:inline-flex; align-items:center; gap:.45em;
+  background:var(--accent); color:#fff;
+  border-radius:999px; padding:5px 16px 5px 8px;
+  font-size:.82rem; font-weight:700; letter-spacing:.08em;
+  box-shadow:0 3px 10px rgba(31,39,35,.14);
+}
+.point-note__ico{
+  display:inline-flex; align-items:center; justify-content:center; flex:none;
+  width:22px; height:22px; border-radius:50%;
+  background:var(--sun); color:var(--accent-dark);
+}
+.point-note__ico svg{ width:13px; height:13px; }
+.point-note__lead{
+  display:block; margin-bottom:.4em;
+  font-size:1.06rem; font-weight:700; color:var(--accent-dark); line-height:1.7;
+}
+.point-note strong{ color:var(--ink); }
+@media (max-width:560px){
+  .point-note{ padding:28px 20px 22px; }
+  .point-note__tag{ left:18px; font-size:.78rem; }
+}
+
+/* =========================================================
+   2026-10-14　職員の節に、職種の一覧を足す
+   ========================================================= */
+.team-all{
+  margin-top:3.2em; padding:28px 24px;
+  background:var(--mist); border-radius:14px; text-align:center;
+}
+.team-all__lead{
+  font-size:.97rem; color:var(--ink); margin:0 0 1.2em; line-height:1.9;
+}
+.team-all .tags{ margin-bottom:0; }
+.team-all .tags li{ background:var(--white); border-color:rgba(43,97,81,.18); }
+@media (max-width:760px){
+  /* スマホでも、職種の札はまんなかにそろえます */
+  .team-all .tags{ justify-content:center; }
+}
+@media (max-width:560px){
+  .team-all{ padding:24px 18px; }
+}
+
 </style>
 </head>
 
@@ -2063,7 +2139,7 @@ body > .fv{ background:var(--ine5); }
 <!-- ===== できること（サービス3つ）===== -->
 <section class="section section--flow" aria-labelledby="services-title">
   <div class="wrap">
-    <h2 class="h2" id="services-title"><span>おうちに帰るまで、</span><span>帰ってからも。</span></h2>
+    <h2 class="h2" id="services-title"><span>おうちに帰るまで、</span><span>帰ってからも</span></h2>
     <p class="lede lede--flow">ル・サンク湯澤は、<strong>介護老人保健施設（在宅強化型）</strong>・<strong>通所リハビリテーション</strong>・<strong>訪問リハビリステーション くるみ</strong>の3つを、同じ建物で運営しています。入所・リハビリ・在宅支援・再入所まで、多職種とグループの連携で、<strong><span class="nb">「おうちに帰る」までも、</span><span class="nb">「帰ってから」も、</span></strong>私たちが応援します。</p>
 
     <ul class="tags">
@@ -2129,7 +2205,7 @@ body > .fv{ background:var(--ine5); }
           <span class="stage__no">03</span>
         </span>
         <span class="stage__name">退所調整</span>
-        <span class="stage__sub">おうちのほうを、先に整えます。</span>
+        <span class="stage__sub">退所後の生活を見据えて、住まいとサービスをあらかじめ整えます。</span>
         <span class="stage__more">くわしく<span class="stage__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span></span>
       </button>
       <span class="stage__arrow" aria-hidden="true">
@@ -2149,7 +2225,7 @@ body > .fv{ background:var(--ine5); }
           </span>
           <span class="stage__no">04</span>
         </span>
-        <span class="stage__name">在宅療養</span>
+        <span class="stage__name">おうちでの暮らし</span>
         <span class="stage__sub">帰ってからも、同じチームがかかわります。</span>
         <span class="stage__more">くわしく<span class="stage__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span></span>
       </button>
@@ -2161,13 +2237,16 @@ body > .fv{ background:var(--ine5); }
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/>
       </svg>
-    </span><span>おうちに帰ったあと、また調子をくずされたときは、<strong>必要に応じて入所に戻ることもできます。</strong></span></p>
+    </span><span>おうちに帰った後（退所の後）、<strong>必要に応じて入所に戻ることもできます。</strong></span></p>
 
 
-    <p class="group-note"><strong>グループの事業所が、そのまま続きます。</strong>訪問看護・訪問リハビリ、通所介護・通所リハビリ、居宅介護支援（ケアマネジャー）、有料老人ホーム。退所後の生活設計から在宅サービスの選定、施設入所のご相談まで、<strong>コーディネート専門部署</strong>の職員が一括してお手伝いします。</p>
+    <p class="point-note">
+      <span class="point-note__tag"><span class="point-note__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.9 1.1-.9 1.7H9.3c0-.6-.3-1.2-.9-1.7A6 6 0 0 1 12 3z"/></svg></span>ポイント</span>
+      <span class="point-note__lead">博滇会グループの各チームによるサポートが、退所後も続きます。</span>
+      訪問看護・訪問リハビリ、通所介護・通所リハビリ、居宅介護支援（ケアマネジャー）、有料老人ホーム。退所後の生活設計から在宅サービスの選定、施設入所のご相談まで、<strong>コーディネート専門部署</strong>の職員が一括してお手伝いしています。
+    </p>
 
-    <p class="flow-note">▲「要確認」の付いた文章は、まだ施設への確認が取れていません。<strong>テスト版のため仮に置いてあります。</strong>確認が取れしだい書き換えるか、取れなければ削除します。</p>
-    <h3 class="sub-h">3つのかたちで、お手伝いします。</h3>
+    <h3 class="sub-h">3つのかたちで、お手伝いします</h3>
     <p class="sub-lede">入所・通所・ご自宅への訪問リハビリ。暮らしの状況に合わせて選んでいただけます。</p>
 
     <div class="cards">
@@ -2335,7 +2414,7 @@ body > .fv{ background:var(--ine5); }
      ▼差し替え⑤：写真・職種・一言。ご本人の了解を得てから掲載してください -->
 <section class="section section--white" aria-labelledby="staff-title">
   <div class="wrap">
-    <h2 class="h2" id="staff-title"><span>私たちが</span><span>「おうちに帰る」</span><span>応援団です。</span></h2>
+    <h2 class="h2" id="staff-title"><span>私たちが</span><span>「おうちに帰る」</span><span>応援団です</span></h2>
     <p class="lede">博滇会グループのさまざまな職種が連携して、みなさまの<strong>「おうちに帰る」</strong>に向き合います。</p>
 
     <div class="staff">
@@ -2355,6 +2434,20 @@ body > .fv{ background:var(--ine5); }
         <p class="voice">「まずはご家族のお困りごとから、お聞かせください」</p>
       </figure>
     </div>
+
+    <div class="team-all">
+      <p class="team-all__lead">ほかにも、たくさんの職種がかかわっています。</p>
+      <ul class="tags">
+        <li>医師</li>
+        <li>看護職員</li>
+        <li>介護職員</li>
+        <li>支援相談員</li>
+        <li>理学療法士</li>
+        <li>作業療法士</li>
+        <li>言語聴覚士</li>
+        <li>管理栄養士</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -2362,7 +2455,7 @@ body > .fv{ background:var(--ine5); }
      ▼差し替え⑭：写真6枚と説明は仮です。実際の場面に差し替えてください -->
 <section class="section" aria-labelledby="kids-title">
   <div class="wrap">
-    <h2 class="h2" id="kids-title"><span>ル・サンク湯澤の、</span><span>ふだんの風景。</span></h2>
+    <h2 class="h2" id="kids-title"><span>ル・サンク湯澤の、</span><span>ふだんの風景</span></h2>
 
     <h3 class="tag-h"><span class="tag-h__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5S3.8 15.2 3.8 9.9A4.1 4.1 0 0 1 12 7.6a4.1 4.1 0 0 1 8.2 2.3c0 5.3-8.2 10.6-8.2 10.6z"/></svg></span><span class="tag-h__txt">保育園のこどもたちと、いっしょに</span></h3>
     <p class="lede">ル・サンク湯澤の中には、<strong>もみじナースリー</strong>という保育園があります。同じ建物のこどもたちと交流する機会を、<strong>定期的に</strong>設けています。子どもたちとの交流を通して、日々の楽しみや心の活性化につながる時間を大切にしています。</p>
@@ -2484,8 +2577,7 @@ body > .fv{ background:var(--ine5); }
 <!-- ===== 資料のダウンロード ===== -->
 <section class="section section--white" aria-labelledby="dl-title">
   <div class="wrap">
-    <h2 class="h2" id="dl-title"><span>資料を、</span><span>ご覧いただけます。</span></h2>
-    <p class="lede">入力なしで、そのままご覧いただけます。印刷してお使いください。</p>
+    <h2 class="h2" id="dl-title">パンフレットはこちら</h2>
 
     <ul class="dl-list">
       <!-- ▼差し替え⑨：パンフレットのPDF。ファイル名・更新日・容量を書き換えてください -->
@@ -2531,7 +2623,7 @@ body > .fv{ background:var(--ine5); }
 
     </ul>
 
-    <p class="dl-note">開けない場合は、お電話でお送りすることもできます。お気軽にお申しつけください。<br>重要事項説明書（介護老人保健施設・通所リハビリテーション）は、ページ下部のリンクからご覧いただけます。</p>
+    <p class="dl-note">開けない場合は、お電話でお送りすることもできます。お気軽にお申しつけください。</p>
   </div>
 </section>
 
@@ -2550,7 +2642,7 @@ body > .fv{ background:var(--ine5); }
 
 
   <div class="wrap">
-    <h2 class="h2" id="cta-title"><span>まずは、</span><span>ご相談ください。</span></h2>
+    <h2 class="h2" id="cta-title"><span>まずは、</span><span>ご相談ください</span></h2>
     <p class="lede">ご本人の状態がわからない段階でも大丈夫です。ご家族だけのご見学もできます。</p>
     <p class="tel3-lead">お電話でのご相談は、ご利用になりたいサービスの番号へどうぞ。</p>
     <!-- 電話番号はサービスごとに3つ。id は押された回数を数えるために使っています（消さないでください） -->
@@ -2675,9 +2767,9 @@ body > .fv{ background:var(--ine5); }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('IntersectionObserver' in window)) return;
   var sel = '.section .h2, .section .lede, .tags, .stages, .stages__back, .flow__item,'
-          + ' .group-note, .sub-h, .sub-lede, .cards, .photos, .photos__note, .staff,'
+          + ' .point-note, .sub-h, .sub-lede, .cards, .photos, .photos__note, .staff,'
           + ' .meal, .insta-box, .dl-list, .dl-note, .facts, .day-grid, .steps,'
-          + ' .fee-total, .tablewrap, .flow-note';
+          + ' .fee-total, .tablewrap, .team-all';
   var els = Array.prototype.slice.call(document.querySelectorAll(sel));
   els.forEach(function(el){ el.classList.add('reveal'); });
   function show(el){ el.classList.add('is-in'); io.unobserve(el); }
@@ -2833,7 +2925,7 @@ body > .fv{ background:var(--ine5); }
       <img src="flow-1-soudan.jpg" alt="ご相談のようす" width="640" height="480" loading="lazy">
     </figure>
     <div class="pop__text">
-      <p class="pop__head"><span class="flow__pill">はじめに</span><span class="flow__ttl" id="pop-1-t">ご相談</span></p>
+      <p class="pop__head"><span class="flow__no">01</span><span class="flow__ttl" id="pop-1-t">ご相談</span></p>
       <p class="pop__lead">最初のご相談の際から、<span class="nb">「おうちに帰る」</span>までの道すじを一緒に考えます。</p>
       <p>ル・サンク湯澤は<strong>在宅強化型</strong>の介護老人保健施設です。在宅強化型とは、「おうちに帰る」を実現する力が、とくに高い施設として国に認められた施設につけられる名称です。</p>
       <p>はじめのご相談でうかがうのは、<strong>どんな暮らしに戻りたいか</strong>ということです。お部屋の様子、段差や手すり、ご家族にお願いできること。ご自宅での生活を思いうかべながら、「いつごろ、どんな状態で帰るか」を一緒に決めていきます。</p>
@@ -2857,7 +2949,7 @@ body > .fv{ background:var(--ine5); }
       <img src="flow-2-nyusho.jpg" alt="リハビリと生活の練習のようす" width="640" height="480" loading="lazy">
     </figure>
     <div class="pop__text">
-      <p class="pop__head"><span class="flow__no">①</span><span class="flow__ttl" id="pop-2-t">入所・ショートステイ</span></p>
+      <p class="pop__head"><span class="flow__no">02</span><span class="flow__ttl" id="pop-2-t">入所・ショートステイ</span></p>
       <p class="pop__lead">体を戻す時間と、暮らしの練習。</p>
       <p>リハビリの時間だけではありません。起きる、歩く、トイレに行く、お風呂に入る。おうちに戻ってから必要になる毎日の動きを、そのまま練習していきます。</p>
       <p><strong>理学療法士・作業療法士・言語聴覚士の3職種</strong>が連携し、お一人ずつの計画をつくります。歩く練習には<strong>歩行トレーニングロボット</strong>も使い、安心して歩く体験を重ねていただけます。</p>
@@ -2881,10 +2973,11 @@ body > .fv{ background:var(--ine5); }
       <img src="flow-3-kaeru.jpg" alt="ご自宅を確認するようす" width="640" height="480" loading="lazy">
     </figure>
     <div class="pop__text">
-      <p class="pop__head"><span class="flow__no">②</span><span class="flow__ttl" id="pop-3-t">退所調整</span></p>
-      <p class="pop__lead">おうちのほうを、先に整えます。</p>
-      <p>帰る日が近づいたら、多職種で<strong>退所調整</strong>を行います。ご本人の状態、ご家族の事情、おうちの様子をひとつずつ確かめ、担当のケアマネジャーと退所後の予定を決めてからお帰りいただきます。</p>
-      <p><span class="check">要確認</span>ご自宅にうかがい、手すりの位置や段差、トイレまでの動線を一緒に確かめます。ご家族には介助のしかたをお伝えします。</p>
+      <p class="pop__head"><span class="flow__no">03</span><span class="flow__ttl" id="pop-3-t">退所調整</span></p>
+      <p class="pop__lead">退所後の生活を見据えて、住まいとサービスをあらかじめ整えます。</p>
+      <p>ご本人の状態やご家族の状況に応じて、<strong>退所後の生活を見据えた住環境の調整</strong>を行います。手すりの位置や段差、トイレまでの動線など、ご自宅で困りそうなところを、帰る前に整えます。</p>
+      <p>あわせて、<strong>医療・介護・福祉のサービスの調整</strong>を行います。担当のケアマネジャーと退所後の予定を決め、<strong>訪問診療・訪問看護との連携</strong>もお手伝いします。</p>
+      <p>退所後も安心して在宅生活を送っていただけるよう、ご家族への<strong>介護指導</strong>や、ご本人への<strong>リハビリ指導</strong>も行います。</p>
     </div>
   </div>
 </div>
@@ -2904,13 +2997,13 @@ body > .fv{ background:var(--ine5); }
       <img src="flow-4-kaettaato.jpg" alt="通所リハビリ・訪問リハビリのようす" width="640" height="480" loading="lazy">
     </figure>
     <div class="pop__text">
-      <p class="pop__head"><span class="flow__no">③</span><span class="flow__ttl" id="pop-4-t">在宅療養</span></p>
+      <p class="pop__head"><span class="flow__no">04</span><span class="flow__ttl" id="pop-4-t">おうちでの暮らし</span></p>
       <p class="pop__lead">帰ってからも、同じチームがかかわります。</p>
       <p>ご自宅から通っていただく<strong>通所リハビリテーション</strong>（送迎があります）と、リハビリ職がご自宅にうかがう<!-- ▼差し替え⑪と同じ住所です。専用サイトができたら両方書き換えてください -->
             <a class="inline-link" id="btn-homon-site-2"
                href="https://hakushinkai.jp/facilities/home_visit_rihabili/"
                target="_blank" rel="noopener"><strong>訪問リハビリステーション</strong><span class="inline-link__tail"><strong> くるみ</strong><span class="inline-link__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg></span></span></a>。おうちに帰って終わりではなく、そこからも続けてお手伝いします。</p>
-      <p>通所リハビリは、運動のためのリハビリだけではありません。<strong>施設で調理するお食事、入浴のお手伝い、みんなで過ごす時間</strong>まで。暮らしを支えるものが、ここにそろっています。ご自宅にうかがって<strong>家屋調査</strong>を行い、福祉用具や住まいの環境についても助言します。</p>
+      <p>通所リハビリは、運動のためのリハビリだけではありません。<strong>施設で調理するお食事、入浴のお手伝い、みんなで過ごす時間</strong>まで。暮らしを支えるものが、ここにそろっています。</p>
     </div>
   </div>
 </div>

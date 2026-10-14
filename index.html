@@ -1990,6 +1990,61 @@ body > .fv{ background:var(--ine5); }
   .team-all{ padding:24px 18px; }
 }
 
+
+/* =========================================================
+   2026-10-14　職員のスライダー
+   職員の写真を、横に流して見られるようにしました。
+   指でなぞる・左右のボタン・キーボードの矢印、どれでも送れます。
+   ========================================================= */
+.slider{ position:relative; }
+.slider__track{
+  display:flex; gap:20px; list-style:none; margin:0; padding:4px 2px 10px;
+  overflow-x:auto; overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory; scroll-behavior:smooth;
+  scrollbar-width:thin;
+}
+.slider__track::-webkit-scrollbar{ height:7px; }
+.slider__track::-webkit-scrollbar-thumb{ background:var(--line); border-radius:999px; }
+.staff__item{
+  flex:0 0 clamp(210px, 25%, 250px);
+  scroll-snap-align:start;
+}
+.staff__item figure{ margin:0; text-align:center; }
+.staff__item .ph-img{ aspect-ratio:4/3; border-radius:14px; box-shadow:var(--shadow); }
+.staff__item .role{ margin:.9em 0 .35em; }
+.staff__item .voice{ font-size:.92rem; line-height:1.9; color:var(--ink-soft); }
+
+/* 左右のボタン。札の写真の高さのまんなかに置いています */
+.slider__btn{
+  position:absolute; top:34%; transform:translateY(-50%);
+  width:46px; height:46px; border-radius:50%;
+  background:var(--white); color:var(--accent);
+  border:1px solid var(--line); box-shadow:0 4px 14px rgba(31,39,35,.14);
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  transition: background-color .18s ease, color .18s ease, opacity .18s ease;
+  z-index:2;
+}
+.slider__btn svg{ width:22px; height:22px; }
+.slider__btn--prev{ left:-10px; }
+.slider__btn--next{ right:-10px; }
+.slider__btn:hover{ background:var(--accent); color:#fff; }
+.slider__btn:focus-visible{ outline:3px solid var(--accent-dark); outline-offset:3px; }
+.slider__btn[disabled]{ opacity:0; pointer-events:none; }
+.slider__hint{
+  margin-top:.6em; text-align:center;
+  font-size:.84rem; color:var(--ink-soft);
+}
+@media (min-width:1100px){ .slider__hint{ display:none; } }
+
+@media (max-width:760px){
+  .slider__track{ gap:14px; }
+  .staff__item{ flex:0 0 72%; }
+  .slider__btn{ display:none; }   /* スマホは、指でなぞって見ていただきます */
+}
+@media (prefers-reduced-motion: reduce){
+  .slider__track{ scroll-behavior:auto; }
+}
+
 </style>
 </head>
 
@@ -2417,29 +2472,77 @@ body > .fv{ background:var(--ine5); }
     <h2 class="h2" id="staff-title"><span>私たちが</span><span>「おうちに帰る」</span><span>応援団です</span></h2>
     <p class="lede">博滇会グループのさまざまな職種が連携して、みなさまの<strong>「おうちに帰る」</strong>に向き合います。</p>
 
-    <div class="staff">
-      <figure>
-        <img class="ph-img ph-round" src="staff-1.jpg" alt="理学療法士の職員" width="420" height="420" loading="lazy">
-        <span class="role">理学療法士</span>
-        <p class="voice">「できることを、ひとつずつ増やしていきましょう」</p>
-      </figure>
-      <figure>
-        <img class="ph-img ph-round" src="staff-2.jpg" alt="介護福祉士の職員" width="420" height="420" loading="lazy">
-        <span class="role">介護福祉士</span>
-        <p class="voice">「その方のペースに合わせるのが、いちばん近道です」</p>
-      </figure>
-      <figure>
-        <img class="ph-img ph-round" src="staff-3.jpg" alt="支援相談員の職員" width="420" height="420" loading="lazy">
-        <span class="role">支援相談員</span>
-        <p class="voice">「まずはご家族のお困りごとから、お聞かせください」</p>
-      </figure>
+    <!-- ▼差し替え⑤：写真・職種・一言。ご本人の了解を得てから掲載してください
+         横に並んだ札は、指でなぞるか、左右のボタンで送れます。
+         btn-staff-… の印は、押された回数を数えるために使っています（消さないでください）。 -->
+    <div class="slider" data-slider>
+      <ul class="slider__track staff" id="staff-track">
+        <li class="staff__item">
+          <figure>
+            <img class="ph-img" src="staff-4.jpg" alt="医師の職員" width="960" height="720" loading="lazy">
+            <span class="role">医師</span>
+            <p class="voice">「体のことは、私たちが見ています。安心してリハビリに向かってください」</p>
+          </figure>
+        </li>
+        <li class="staff__item">
+          <figure>
+            <img class="ph-img" src="staff-5.jpg" alt="看護師の職員" width="960" height="720" loading="lazy">
+            <span class="role">看護師</span>
+            <p class="voice">「夜もそばにいます。小さな変化も見のがしません」</p>
+          </figure>
+        </li>
+        <li class="staff__item">
+          <figure>
+            <img class="ph-img" src="staff-2.jpg" alt="介護職員" width="960" height="720" loading="lazy">
+            <span class="role">介護職員</span>
+            <p class="voice">「その方のペースに合わせるのが、いちばん近道です」</p>
+          </figure>
+        </li>
+        <li class="staff__item">
+          <figure>
+            <img class="ph-img" src="staff-3.jpg" alt="支援相談員の職員" width="960" height="720" loading="lazy">
+            <span class="role">支援相談員</span>
+            <p class="voice">「まずはご家族のお困りごとから、お聞かせください」</p>
+          </figure>
+        </li>
+        <li class="staff__item">
+          <figure>
+            <img class="ph-img" src="staff-1.jpg" alt="理学療法士の職員" width="960" height="720" loading="lazy">
+            <span class="role">理学療法士</span>
+            <p class="voice">「できることを、ひとつずつ増やしていきましょう」</p>
+          </figure>
+        </li>
+        <li class="staff__item">
+          <figure>
+            <img class="ph-img" src="staff-8.jpg" alt="管理栄養士の職員" width="960" height="720" loading="lazy">
+            <span class="role">管理栄養士</span>
+            <p class="voice">「かむ力・飲み込む力に合わせて、おいしく食べられるように」</p>
+          </figure>
+        </li>
+      </ul>
+
+      <button class="slider__btn slider__btn--prev" type="button" id="btn-staff-prev"
+              aria-controls="staff-track" aria-label="前の職員を見る">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 5l-7 7 7 7"/>
+        </svg>
+      </button>
+      <button class="slider__btn slider__btn--next" type="button" id="btn-staff-next"
+              aria-controls="staff-track" aria-label="次の職員を見る">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
     </div>
+    <p class="slider__hint">← 横になぞると、ほかの職種も見られます →</p>
 
     <div class="team-all">
-      <p class="team-all__lead">ほかにも、たくさんの職種がかかわっています。</p>
+      <p class="team-all__lead">多職種がワンチームで関わります。</p>
       <ul class="tags">
         <li>医師</li>
-        <li>看護職員</li>
+        <li>看護師</li>
         <li>介護職員</li>
         <li>支援相談員</li>
         <li>理学療法士</li>
@@ -2905,6 +3008,44 @@ body > .fv{ background:var(--ine5); }
     });
   }, { threshold: 0.25 });
   targets.forEach(function (t) { io.observe(t); });
+})();
+
+/* 職員の横並びを、左右のボタンで送る（2026-10-14 追加）
+   ・ボタンは、札1枚ぶんずつ動かします
+   ・いちばん端まで来たら、そのボタンは消えます
+   ・スマホでは、指でなぞって見ていただきます */
+(function(){
+  var box = document.querySelector('[data-slider]');
+  if (!box) return;
+  var track = box.querySelector('.slider__track');
+  var prev  = box.querySelector('.slider__btn--prev');
+  var next  = box.querySelector('.slider__btn--next');
+  if (!track || !prev || !next) return;
+
+  function step(){
+    var item = track.querySelector('li');
+    if (!item) return 240;
+    var gap = parseFloat(getComputedStyle(track).columnGap || '20') || 20;
+    return item.getBoundingClientRect().width + gap;
+  }
+  function update(){
+    var max = track.scrollWidth - track.clientWidth - 2;
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= max;
+  }
+  prev.addEventListener('click', function(){ track.scrollBy({ left: -step() }); });
+  next.addEventListener('click', function(){ track.scrollBy({ left:  step() }); });
+  track.addEventListener('scroll', update, { passive:true });
+  window.addEventListener('resize', update);
+
+  /* キーボードの左右でも送れるようにします */
+  track.setAttribute('tabindex', '0');
+  track.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight'){ e.preventDefault(); track.scrollBy({ left:  step() }); }
+    if (e.key === 'ArrowLeft'){  e.preventDefault(); track.scrollBy({ left: -step() }); }
+  });
+
+  update();
 })();
 </script>
 

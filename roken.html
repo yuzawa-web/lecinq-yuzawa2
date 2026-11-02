@@ -1098,7 +1098,7 @@ body > .header{ position:relative; z-index:60; }
 .gnav__a--recruit{ border:1px solid var(--accent); margin-left:6px; }
 .gnav__a--recruit:hover{ background:var(--accent); color:#fff; }
 
-@media (max-width:1359px){
+@media (max-width:1419px){
   .gnav__toggle{ display:inline-flex; }
   .gnav__list{
     display:none;
@@ -1376,7 +1376,7 @@ h3.deco-label{ font-size:1.05rem; }
 
 .header .facility{ font-size:1.3rem; letter-spacing:.06em; color:var(--accent-dark); }
 .header .group{ font-size:.82rem; }
-@media (max-width:1359px){ .header .facility{ font-size:1.2rem; } }
+@media (max-width:1419px){ .header .facility{ font-size:1.2rem; } }
 @media (max-width:520px){
   .header .facility{ font-size:1.02rem; }
   .header .group{ font-size:.7rem; }
@@ -1390,7 +1390,7 @@ h3.deco-label{ font-size:1.05rem; }
 .header__logo{
   width:auto; height:34px; flex:none; margin-right:.2em; display:block;
 }
-@media (max-width:1359px){ .header__logo{ height:31px; } }
+@media (max-width:1419px){ .header__logo{ height:31px; } }
 @media (max-width:520px){ .header__logo{ height:27px; margin-right:0; } }
 @media (max-width:360px){ .header__logo{ height:24px; } }
 
@@ -1681,7 +1681,7 @@ body > .fv{ background:var(--ine5); }
 .header__logo--lecinq{
   height:52px; width:auto; margin-right:.1em; display:block;
 }
-@media (max-width:1359px){ .header__logo--lecinq{ height:48px; } }
+@media (max-width:1419px){ .header__logo--lecinq{ height:48px; } }
 @media (max-width:860px) { .header__logo--lecinq{ height:42px; } }
 @media (max-width:520px) { .header__logo--lecinq{ height:37px; margin-right:0; } }
 @media (max-width:360px) { .header__logo--lecinq{ height:32px; } }
@@ -1730,6 +1730,26 @@ body > .fv{ background:var(--ine5); }
   .section--back{ padding-top:40px; padding-bottom:40px; }
 }
 
+
+/* =========================================================
+   2026-11-02　上の帯に「トップページ」へのリンクを出す
+   （見出し帯にあった「← ル・サンク湯澤 トップへ」のかわりです）
+   ========================================================= */
+.gnav__a--home{ border:1px solid var(--line); margin-right:4px; }
+.gnav__a--home:hover{ background:var(--mist); }
+.gnav__homeico{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:14px; height:14px; margin-right:.4em; vertical-align:-2px;
+}
+.gnav__homeico svg{ width:100%; height:100%; }
+@media (max-width:1419px){
+  /* メニューの中では、枠をはずして他の項目とそろえます */
+  .gnav__a--home{ border:none; border-bottom:1px solid var(--line); border-radius:0;
+                  margin:0 0 5px; padding-bottom:16px; }
+  .gnav__a--home:hover{ background:var(--leaf-soft); }
+  .gnav__homeico{ width:16px; height:16px; }
+}
+
 </style>
 </head>
 
@@ -1766,10 +1786,12 @@ body > .fv{ background:var(--ine5); }
        btn-nav-… の印は、押された回数を数えるために使っています（消さないでください）。 -->
   <nav class="gnav" aria-label="事業所のご案内">
     <ul class="gnav__list" id="gnav-list">
-      <li class="gnav__sponly">
-        <a class="gnav__a" id="btn-nav-top" href="index.html">
-          <span class="gnav__ttl">ル・サンク湯澤 トップ</span>
-          <small>施設ぜんたいのご案内</small>
+      <li>
+        <!-- トップページへ戻るリンク。パソコンでもスマホでも出ます（2026-11-02）。
+             btn-nav-top の印は、押された回数を数えるために使っています（消さないでください）。 -->
+        <a class="gnav__a gnav__a--home" id="btn-nav-top" href="index.html">
+          <span class="gnav__ttl"><span class="gnav__homeico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 10.7 12 3.2l8.8 7.5"/><path d="M5.6 9.8V20.8h12.8V9.8"/></svg></span>トップページ</span>
+          <small>ル・サンク湯澤ぜんたいのご案内</small>
         </a>
       </li>
       <li>
@@ -1840,10 +1862,6 @@ body > .fv{ background:var(--ine5); }
 
 
   <div class="wrap">
-    <!-- 施設のトップへ戻る案内。btn-back-head の印は消さないでください -->
-    <p class="backlink">
-      <a href="index.html" id="btn-back-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5"/><path d="M11 18l-6-6 6-6"/></svg>ル・サンク湯澤 トップへ</a>
-    </p>
     <h1>介護老人保健施設<span class="badge">在宅強化型</span></h1>
   </div>
 </div>

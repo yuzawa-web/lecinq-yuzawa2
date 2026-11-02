@@ -1719,6 +1719,17 @@ body > .fv{ background:var(--ine5); }
   .orgcard__logo{ width:52px; height:52px; border-radius:12px; padding:7px; }
 }
 
+
+/* =========================================================
+   2026-10-28　ページの終わりの「トップへ」だけの節
+   見出しが無いので、上下の余白を少しつめています。
+   ========================================================= */
+.section--back{ padding-top:56px; padding-bottom:56px; }
+.section--back .card-link{ margin-top:0; }
+@media (max-width:760px){
+  .section--back{ padding-top:40px; padding-bottom:40px; }
+}
+
 </style>
 </head>
 
@@ -1832,10 +1843,8 @@ body > .fv{ background:var(--ine5); }
     <!-- 施設のトップへ戻る案内。btn-back-head の印は消さないでください -->
     <p class="backlink">
       <a href="index.html" id="btn-back-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5"/><path d="M11 18l-6-6 6-6"/></svg>ル・サンク湯澤 トップへ</a>
-      <span class="backlink__now">いま見ているページ：介護老人保健施設のページ</span>
     </p>
     <h1>介護老人保健施設<span class="badge">在宅強化型</span></h1>
-    <p>おうちに帰るための時間を過ごしていただく場所です。入所のご相談・ご見学は、いつでも承ります。</p>
   </div>
 </div>
 
@@ -1857,13 +1866,12 @@ body > .fv{ background:var(--ine5); }
       <div><dt>お問い合わせ</dt><dd><a href="tel:0486228170">048-622-8170</a></dd></div>
     </dl>
 
-    <p class="lede" style="margin-bottom:0">上の内容は<strong>重要事項説明書</strong>に基づいています。くわしくはページ下部のPDFをご覧ください。</p>
   </div>
 </section>
 
 <section class="section section--white" aria-labelledby="reha-title">
   <div class="wrap">
-    <h2 class="h2" id="reha-title">リハビリの充実</h2>
+    <h2 class="h2" id="reha-title">充実したリハビリプログラム</h2>
     <p class="lede">理学療法士（PT）・作業療法士（OT）・言語聴覚士（ST）が連携し、お一人ずつの個別プログラムで機能回復をお手伝いします。</p>
     <ul class="tags">
       <li>PT 理学療法士</li>
@@ -1985,7 +1993,7 @@ body > .fv{ background:var(--ine5); }
     <p class="lede">ケアマネジャーの方、ご家族の方、どちらからのご相談でも承ります。</p>
     <ul class="steps">
       <li><span class="no">1</span><div><h3>お電話でご相談</h3><p><a href="tel:0486228170">048-622-8170</a> へお電話ください。支援相談員が承ります。ご本人の状態がわからない段階でも大丈夫です。</p></div></li>
-      <li><span class="no">2</span><div><h3>ご見学</h3><p>お部屋、リハビリ室、食堂などをご案内します。ご家族だけのご見学もできます。</p></div></li>
+      <li><span class="no">2</span><div><h3>ご見学</h3><p>お部屋、リハビリ室、食堂などをご案内します。ご家族のみでご見学いただくことも可能です。</p></div></li>
       <li><span class="no">3</span><div><h3>お申し込み・書類のご提出</h3><p><span class="check">要確認</span>必要な書類（診療情報提供書など）と、提出のしかたを書き足してください。</p></div></li>
       <li><span class="no">4</span><div><h3>入所判定</h3><p><span class="check">要確認</span>判定の会議の頻度と、結果をお伝えするまでの日数を書き足してください。</p></div></li>
       <li><span class="no">5</span><div><h3>ご入所</h3><p>入所の日から、おうちに帰る日のことを一緒に考えていきます。</p></div></li>
@@ -1993,48 +2001,10 @@ body > .fv{ background:var(--ine5); }
   </div>
 </section>
 
-<section class="section" aria-labelledby="after-title">
+<!-- 「退所したあとも、続きます。」の節は、トップページと同じ内容だったため削除しました（2026-10-28）。
+     ページの終わりの「トップへ」のボタンだけ残しています。 -->
+<section class="section section--back">
   <div class="wrap">
-    <h2 class="h2" id="after-title">退所したあとも、続きます。</h2>
-    <p class="lede">おうちに帰って終わりではありません。同じ施設と、同じグループが、そのまま関わり続けます。</p>
-    <div class="stages">
-      <div class="stage">
-        <span class="stage__no">①</span>
-        <p class="stage__name">入所・ショートステイ</p>
-        <p class="stage__sub">リハビリと、暮らしの練習。</p>
-      </div>
-      <span class="stage__arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
-        </svg>
-      </span>
-      <div class="stage">
-        <span class="stage__no">②</span>
-        <p class="stage__name">退所調整</p>
-        <p class="stage__sub">多職種で、帰る日の準備を。</p>
-      </div>
-      <span class="stage__arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
-        </svg>
-      </span>
-      <div class="stage">
-        <span class="stage__no">③</span>
-        <p class="stage__name">在宅療養</p>
-        <p class="stage__sub">通所リハビリ・訪問リハビリ・訪問診療。</p>
-      </div>
-    </div>
-
-    <p class="stages__back"><span class="stages__loop" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/>
-      </svg>
-    </span><span>おうちに帰ったあと、また調子をくずされたときは、<strong>必要に応じて入所に戻ることもできます。</strong></span></p>
-
-    <p class="group-note"><strong>グループの事業所が、そのまま続きます。</strong>訪問看護・訪問リハビリ、通所介護・通所リハビリ、居宅介護支援（ケアマネジャー）、有料老人ホーム。退所後の生活設計から在宅サービスの選定、施設入所のご相談まで、<strong>コーディネート専門部署</strong>の職員が一括してお手伝いします。</p>
-
     <a class="card-link" id="btn-back-top" href="index.html">
       <span class="card-link__text">
         <strong>ル・サンク湯澤のトップへ</strong>
@@ -2092,6 +2062,7 @@ body > .fv{ background:var(--ine5); }
       </li>
     </ul>
 
+    <p class="dl-note">このページに書いてある入所定員・職種・サービスの内容・費用は、上の<strong>重要事項説明書</strong>に基づいています。</p>
     <p class="dl-note">開けない場合は、お電話でお送りすることもできます。お気軽にお申しつけください。</p>
   </div>
 </section>
@@ -2112,7 +2083,7 @@ body > .fv{ background:var(--ine5); }
 
   <div class="wrap">
     <h2 class="h2" id="cta-title"><span>まずは、</span><span>ご相談ください。</span></h2>
-    <p class="lede">ご本人の状態がわからない段階でも大丈夫です。ご家族だけのご見学もできます。</p>
+    <p class="lede">ご家族のみでご見学いただくことも可能です。</p>
     <div class="actions actions--visit" style="justify-content:center">
       <a class="btn btn--tel" id="btn-tel-2" href="tel:0486228170">
         <span class="label">介護老人保健施設／ショートステイ</span><span class="num">048-622-8170</span>
